@@ -1,0 +1,27 @@
+[07:59:08]:		 [java] EXCEPTION CATCHER REGISTERED
+[07:59:08]:		 [java] About to run tests as follows:
+[07:59:08]:		 [java] Unit tests will not be run.
+[07:59:08]:		 [java] Function tests will not be run.
+[07:59:08]:		 [java] Load tests will be run.
+[07:59:08]:		 [java] Only packages to rippledown.phadia.loadtest (inclusive) will be tested.
+[07:59:08]:		 [java] ########### Running Load Tests ###########
+[07:59:08]:		 [java] Running Load Tests in rippledown.attribute.loadtest....
+[07:59:09]:		 [java] Matching keywords by order...
+[07:59:09]:		 [java]   Total = 652
+[07:59:09]:		 [java] Average = 0.75201845
+[07:59:11]:		 [java] Matching keywords by longest match...
+[07:59:11]:		 [java]   Total = 2712
+[07:59:11]:		 [java] Average = 3.1280277
+[07:59:11]:		 [java] TextCondenserNormalisationLoadTest passed, 3.669s
+[07:59:11]:		 [java] >>>> Results of Load Tests for rippledown.attribute.loadtest: passed. <<<< 3.67s. 464M.
+[07:59:11]:		 [java] Running Load Tests in rippledown.bmd.loadtest....
+[07:59:25]:		 [java] About to open patient manager, please wait...
+[08:00:50]:		 [java] Exporting patients, please wait 10 mins...
+[08:01:18]:		 [java] ExportPatientsTest passed, 126.937s
+[08:03:07]:		 [java] Starting server
+[08:03:07]:		 [java] Time to start BMD server with 19840 patients was 107 secs
+[08:03:09]:		 [java] OpenBigDatabaseTest failed, 123,110.216s
+[08:03:09]:		 [java] >>>> Results of Load Tests for rippledown.bmd.loadtest: passed. <<<< 237.153s. 2,217M.
+[08:03:09]:		 [java] Running Load Tests in rippledown.condition.loadtest....
+[08:03:10]:		 [java] Threads: 12
+[08:03:10]:		 [java] Checking conditions for Phadia240610

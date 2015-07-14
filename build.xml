@@ -1,0 +1,117 @@
+<project name="gta" default="compile">
+    <property name="dist" value="dist"/>
+    <property name="docs" value="docs"/>
+    <property name="lib" value="./lib"/>
+    <property name="src" value="src"/>
+    <property name="bak" value="./bak"/>
+    <property name="testdata" value="./testdata"/>
+    <property name="classes" value="./classes"/>
+
+    <path id="classpath">
+        <pathelement path="${classes}"/>
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${bak}"/>
+        <mkdir dir="${classes}"/>
+        <delete file="${bak}/src.zip.old"/>
+        <move file="${bak}/src.zip" tofile="${bak}/src.zip.old" failonerror="false"/>
+        <zip destfile="${bak}/src.zip">
+            <zipfileset dir="${src}" includes="**/*"/>
+        </zip>
+        <delete dir="${classes}/org"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init, compile-nontest, TCG, copy-resources, compile-test"/>
+
+    <target name="compile-nontest">
+        <javac srcdir="${src}"
+               destdir="${classes}"
+               source="1.8"
+               debug="true"
+               excludes="**/**/*test/**">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="compile-test-tools" description="Compile Test Tools">
+        <echo message="Compile TestData Class Generator"/>
+        <javac srcdir="${src}" debug="on"
+               source="1.8"
+               destdir="${classes}"
+               includes="**/test/tools/*.java">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="TCG" description="Run TestData Class Generator" depends="compile-test-tools">
+        <echo message="Running TestData Class Generator"/>
+        <java classname="org.grandtestauto.test.tools.TestDataClassGenerator" fork="true" maxmemory="384m" dir="${src}">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+            <arg path="${src}"/>
+            <arg value="org.grandtestauto.test.dataconstants"/>
+            <arg path="${testdata}"/>
+        </java>
+    </target>
+
+    <target name="compile-test">
+        <javac srcdir="${src}"
+               destdir="${classes}"
+               source="1.8"
+               debug="true"
+               includes="**/**/*test/**">
+            <classpath>
+                <path refid="classpath"/>
+            </classpath>
+            <compilerarg value="-Xlint:unchecked"/>
+        </javac>
+    </target>
+
+    <target name="copy-resources">
+        <copy todir="${classes}">
+            <fileset dir="${src}">
+                <include name="**/*.properties"/>
+                <include name="**/*.png"/>
+                <include name="**/*.gif"/>
+                <include name="**/*.hs"/>
+                <include name="**/*.jhm"/>
+                <include name="**/*.xml"/>
+                <include name="**/*.html"/>
+            </fileset>
+
+        </copy>
+    </target>
+
+    <target name="test">
+        <java classname="org.grandtestauto.GrandTestAuto" fork="true" maxmemory="384m">
+            <classpath>
+                <pathelement path="${classes}"/>
+                <fileset dir="lib">
+                    <include name="*.jar"/>
+                </fileset>
+                <pathelement path="./testtemp" />
+            </classpath>
+            <arg value="GTARunAll.txt" />
+            <assertions>
+                <enable/>
+            </assertions>
+            <sysproperty key="TestDataRoot" value="${testdata}" />
+        </java>
+    </target>
+
+    <target name="deploy">
+        <jar jarfile="${dist}/gta-5.5.jar" basedir="${classes}">
+        </jar>
+    </target>
+</project>

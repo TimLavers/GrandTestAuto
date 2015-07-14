@@ -1,0 +1,22 @@
+########### Running Unit Tests ###########
+Unit test coverage is complete for a33.
+PackageCheckerTest
+    constructorTest passed
+** About to switch System.out and System.err. **
+** System.out,err switched back. **
+    mainTest passed
+** About to switch System.out and System.err. **
+** System.out,err switched back. **
+    reportMissingUnitTesterTest passed
+** About to switch System.out and System.err. **
+** System.out,err switched back. **
+    reportNegativeTest passed
+In a32 the following method is not unit-tested:
+protected void a32.A.a().
+Problems with unit test coverage for a32, as shown.
+    runTestsTest passed
+>>>> Results of Unit Tests for org.grandtestauto: passed. <<<< 0.796s. 245M.
+******* Overall Unit Test Result: passed. *******
+########### Running Function Tests ###########
+******* Overall Function Test Result: passed. *******
+!!!!!!!!!!!!!Overall Test Result: passed !!!!!!!!!!!!!

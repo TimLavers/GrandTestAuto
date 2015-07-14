@@ -1,0 +1,386 @@
+About to run tests as follows:
+Unit tests will be run.
+Function tests will be run.
+Load tests will be run.
+
+########### Running Unit Tests ###########
+AutoLoadTestFinderTest
+    classesInPackageTest passed
+    constructorTest passed
+    foundSomeClassesTest passed
+    processClassTest passed
+ClassAnalyserTest
+    analysedClassTest passed
+    constructorTest passed
+    isTestableTest passed
+    nameInTestMethodNamesTest passed
+    testMethodNamesTest passed
+    testableConstructorsTest passed
+    testableMethodsTest passed
+ClassFinderTest
+    seekTest passed
+CoverageUnitTesterTest
+    a1Test passed
+    abstractSubclassOfAbstractClassTest passed
+    autoCleanupMethodNotNoArgsTest passed
+    autoCleanupMethodNotPublicTest passed
+    autoCleanupTest passed
+    autoCleanupThrowsExceptionTest passed
+    classAnnotatedAsGeneratedDoesNotNeedTest passed
+    classAnnotatedWithHomeGrownDoesNotNeedTestDoesNotNeedTest passed
+    classNotFoundExceptionInNonMandatoryTestTest passed
+    constructorTest passed
+    noPrintoutOfMissingTestsWhenTestsAreRestrictedTest passed
+    overriddentParametrisedMethodTest passed
+    repeatFlakyTestThatThrowsExceptionUntilItPassesTest passed
+    repeatFlakyTestUntilItPassesTest passed
+    repeatFlakyTestsTest passed
+    repeatFlakyTestsThatThrowExceptionsTest passed
+    restrictionOfMethodsRunTest passed
+    runTestsTest passed
+    unitTestIdentificationTest passed
+DefaultUnitTesterTest
+    constructorTest passed
+GrandTestAutoTest
+    constructorTest passed
+    mainTest passed
+    resultsLoggerTest passed
+    runAllTestsTest passed
+    runFunctionTestsTest passed
+    runLoadTestsTest passed
+    syntheticMethodsDoNotNeedTestingTest passed
+MessagesTest
+    message_String_String_String_Test passed
+    message_String_String_Test passed
+    message_String_String_int_Test passed
+    message_String_Test passed
+    message_String_int_Test passed
+    nlTest passed
+    passOrFailTest passed
+NameTest
+    camelCaseNameTest passed
+    compareToTest passed
+    constructorTest passed
+    dotSeparatedNameTest passed
+    matchesTest passed
+    toStringTest passed
+NameFilterTest
+    acceptTest passed
+    allowsASinglePackageOnlyTest passed
+    constructorTest passed
+    equalsTest passed
+    hashCodeTest passed
+    loggingMessageTest passed
+    toStringTest passed
+PackageCheckerTest
+    constructorTest passed
+    lenientPackageNameTest passed
+    mainTest passed
+    reportMissingUnitTesterTest passed
+    reportNegativeTest passed
+    runTestsTest passed
+PackageInfoTest
+    classNameToTestabilityTest passed
+    constructorTest passed
+    foundSomeClassesTest passed
+    processClassTest passed
+PackagesInfoTest
+    classesRootTest passed
+    namesFunctionTestPackageTest passed
+    namesLoadTestPackageTest passed
+    namesPackageThatMightNeedUnitTestsTest passed
+    packageInfoTest passed
+    testablePackageNamesTest passed
+ProjectAnalyserTest
+    constructorTest passed
+    functionTestPackagesTest passed
+    loadTestPackagesTest passed
+    unitTestPackagesTest passed
+ResultFilesAnalyserTest
+    mainTest passed
+    mainWithFunctionTestFailureTest passed
+    mainWithUnitTestFailureTest passed
+ResultsFormatterTest
+    constructorTest passed
+    formatTest passed
+ResultsLoggerTest
+    closeLoggerTest passed
+    constructorTest passed
+    logTest passed
+TestFinderTest
+    classesInPackageTest passed
+    constructorTest passed
+    foundSomeClassesTest passed
+    processClassTest passed
+>>>> Results of Unit Tests for org.grandtestauto: passed. <<<< 25.679s. 368M.
+RunGrandTestAutoTest
+    constructorTest passed
+    executeFailedTest passed
+    executeTest passed
+    setSettingsFileNameTest passed
+>>>> Results of Unit Tests for org.grandtestauto.ant: passed. <<<< 0.029s. 368M.
+AssertTest
+    aequalIteratorsTest passed
+    aequalsModuloLineTerminatorsTest passed
+    aequalsModuloWhitespaceTest passed
+    aequalsOrNullTest passed
+    aequals_ObjectArray_ObjectArray_Test passed
+    aequals_Object_Object_String_Test passed
+    aequals_Object_Object_Test passed
+    aequals_SampleSequence_SampleSequence_Test passed
+    aequals_SetState_SetState_Test passed
+    aequals_StringArray2_StringArray2_Test passed
+    aequals_StringArray_StringArray_Test passed
+    aequals_String_String_String_Test passed
+    aequals_String_String_Test passed
+    aequals_boolean_boolean_Test passed
+    aequals_byteArray_byteArray_Test passed
+    aequals_double_double_Test passed
+    aequals_float_float_Test passed
+    aequals_intArray_intArray_Test passed
+    aequals_int_int_Test passed
+    aequals_long_long_Test passed
+    assertSameTest passed
+    azzertFalseWithComplexConditionTest passed
+    azzertFalse_boolean_String_Test passed
+    azzertFalse_boolean_Test passed
+    azzertNotNull_Object_String_Test passed
+    azzertNotNull_Object_Test passed
+    azzertNull_Object_String_Test passed
+    azzertNull_Object_Test passed
+    azzert_boolean_String_Test passed
+    azzert_boolean_Test passed
+    betweenTest passed
+    componentIsWithinComponentTest passed
+    datesAreIncreasingTest passed
+    directoryExistsForFilenameTest passed
+    doCaptureScreenshotOnFailTest passed
+    doNotCaptureScreenshotOnFailTest passed
+    equalIteratorsDifferentNumberTest passed
+    equalIteratorsTest passed
+    equalTest passed
+    equalz_Object_Object_Test passed
+    equalz_SetState_SetState_Test passed
+    equalz_double_double_Test passed
+    equalz_float_float_Test passed
+    equalz_int_int_Test passed
+    equalz_long_long_Test passed
+    fail_String_Test passed
+    fail_Throwable_String_Test passed
+    greaterThan_int_int_Test passed
+    greaterThan_long_long_Test passed
+    isExistingDirectoryTest passed
+    notNegative_int_Test passed
+    notNegative_long_String_Test passed
+    notNegative_long_Test passed
+    notNull_Object_String_Test passed
+    notNull_Object_Test passed
+    notSameTest passed
+AssertExceptionTest
+    constructorTest passed
+>>>> Results of Unit Tests for org.grandtestauto.assertion: passed. <<<< 1.741s. 368M.
+LogDirectoryAnalyserTest
+    doUnitTestsFailedTest passed
+    doUnitTestsResultMissingTest passed
+    doUnitTestsTest passed
+    messageForFinalResultTest passed
+    preliminaryMessagesTest passed
+    runAutoLoadTestPackageClassMissingTest passed
+    runAutoLoadTestPackageTest passed
+    runAutoLoadTestPackageTestFailedTest passed
+    unitTestPackageResultsTest passed
+    verboseTest passed
+LogFileAnalyserTest
+    functionAndLoadTestResultsTest passed
+    handle0sTest passed
+    unitTestPackageResultsTest passed
+>>>> Results of Unit Tests for org.grandtestauto.loganalysis: passed. <<<< 0.135s. 368M.
+ClassesRootTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+FirstClassTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+FirstMethodTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+FirstPackageTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+LastClassTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+LastMethodTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+LastPackageTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+LessVerboseLoggingTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    summaryTest passed
+    valueInUserExplanationTest passed
+LogToConsoleTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+LogToFileTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+ResultsFileNameTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+RunFunctionTestsTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    summaryTest passed
+    valueInUserExplanationTest passed
+RunLoadTestsTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    summaryTest passed
+    valueInUserExplanationTest passed
+RunUnitTestsTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    summaryTest passed
+    valueInUserExplanationTest passed
+SettingTest
+    getValueReturnNullIfBlankTest passed
+    parseBooleanTest passed
+    summaryTest passed
+SettingsSpecificationFromFileTest
+    abbreviationsTest passed
+    camelCaseClassNamesTest passed
+    classNameFilterTest passed
+    classesDirTest passed
+    commentedPropertiesWithTheseValuesTest passed
+    constructorTest passed
+    constructor_File_Test passed
+    constructor_String_Test passed
+    lessVerboseLoggingTest passed
+    logToConsoleTest passed
+    methodNameFilterTest passed
+    packageNameFilterTest passed
+    resultsFileNameTest passed
+    runFunctionTestsTest passed
+    runLoadTestsTest passed
+    runUnitTestsTest passed
+    singlePackageNameTest passed
+    stopAtFirstFailureTest passed
+    subDirectoriesAsNamesTest passed
+    summaryTest passed
+    unknownKeysTest passed
+    valuesAreTrimmedTest passed
+SingleClassTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+SingleMethodTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+SinglePackageTest
+    addToTest passed
+    buildFromTest passed
+    keyTest passed
+    valueInUserExplanationTest passed
+StopAtFirstFailureTest
+    addToTest passed
+    buildFromTest passed
+    defaultValueTest passed
+    keyTest passed
+    summaryTest passed
+    valueInUserExplanationTest passed
+SingleLineSettingsTest
+    constructorTest passed
+In org.grandtestauto.settings the following methods are not unit-tested:
+public java.io.File org.grandtestauto.settings.SettingsSpecification.productionClassesDir()
+public java.io.File org.grandtestauto.settings.SettingsSpecification.testClassesDir().
+>>>> Results of Unit Tests for org.grandtestauto.settings: failed. <<<< 3.267s. 368M.
+ProcessReaderTest
+    readProcessTest passed
+>>>> Results of Unit Tests for org.grandtestauto.util: passed. <<<< 0.509s. 368M.
+******* Overall Unit Test Result: failed. *******
+########### Running Function Tests ###########
+Running Function Tests in org.grandtestauto.test.functiontest....
+AccessibleClassesRequireUnitTest passed, 0.021s
+AutomaticDiscoveryOfTestPackages passed, 0.121s
+BooleanAbbreviation passed, 0.008s
+ClassNameAbbreviation passed, 0.344s
+ErrorMessagesAreMeaningful passed, 0.593s
+Examples passed, 0.038s
+ExceptionHandling passed, 0.141s
+ExitCode1 passed, 0.322s
+ExitCode1WhenExtraTestThrowsException passed, 0.351s
+ExtraTestFails passed, 0.01s
+ExtraTestsAreRun passed, 0.018s
+FailFast passed, 0.09s
+FlakyAutoLoadTestRepeatedEvenIfExceptionsThrown passed, 0.008s
+FlakyAutoLoadTestRunUntilPasses passed, 0.005s
+FlakyFunctionTestRunRepeatTimes passed, 0.008s
+GTAMainWithSettingsFileName passed, 0.107s
+LoggerIsFlushed passed, 0.335s
+LoggingToConsole passed, 0.438s
+LoggingToFile passed, 0.018s
+NamingOfFunctionTestPackages passed, 0.012s
+NamingOfLoadTestPackages passed, 0.01s
+NamingOfUnitTestPackages passed, 0.009s
+PackageNameAbbreviation passed, 0.116s
+ReportMemoryUsage passed, 0.518s
+RestrictedExecution passed, 0.067s
+RestrictedExecutionByPackage passed, 0.097s
+RestrictedExecutionOfUnitTests passed, 0.655s
+RestrictedExecutionWithinPackage passed, 0.556s
+ResultOutputForSinglePackage passed, 0.014s
+RunSingleTestFromMain passed, 0.184s
+RunningOfFunctionTests passed, 0.017s
+RunningOfLoadTests passed, 0.011s
+RunningOfUnitTests passed, 0.025s
+SettingsReadFromFile passed, 0.766s
+TestOutput passed, 0.092s
+TestPackagesDoNotNeedUnitTests passed, 0.013s
+ThreeLevelsOfTesting passed, 0.007s
+TimesForAutoLoadTestsAreLogged passed, 10.822s
+TimesForUnitTestPackagesAreLogged passed, 5.51s
+UnitTestIdentification passed, 0.019s
+UseCoverageUnitTesterForMissingUnitTester passed, 0.006s
+>>>> Results of Function Tests for org.grandtestauto.test.functiontest: passed. <<<< 23.076s. 368M.
+******* Overall Function Test Result: passed. *******
+########### Running Load Tests ###########
+Running Load Tests in org.grandtestauto.test.loadtest....
+Load passed, 25.579s
+>>>> Results of Load Tests for org.grandtestauto.test.loadtest: passed. <<<< 25.582s. 358M.
+******* Overall Load Test Result: passed. *******
+!!!!!!!!!!!!!Overall Test Result: failed !!!!!!!!!!!!!

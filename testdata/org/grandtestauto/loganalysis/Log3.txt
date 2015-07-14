@@ -1,0 +1,106 @@
+Build 'RippleDown :: Unit Tests A' #130 
+Started 'Thu Jan 12 00:06:37 EST 2012' on 'Agouti' by 'you'
+Finished 'Thu Jan 12 00:13:26 EST 2012' with status 'NORMAL Success'
+TeamCity URL http://192.168.1.114/viewLog.html?buildId=20257&buildTypeId=bt33 
+TeamCity server version is 6.5.5 (build 18087)
+
+[00:06:37]: bt33
+[00:06:37]: Checking for changes
+[00:06:32]: Clearing temporary directory: C:\TeamCity6.5\buildAgent\temp\buildTmp
+[00:06:32]: Checkout directory: C:\build
+[00:06:32]: Repository sources transferred
+[00:06:32]: Updating sources: server side checkout...
+[00:06:32]: Build preparation done
+[00:06:32]: Publishing internal artifacts
+[00:06:37]:	 [Publishing internal artifacts] Sending build.start.properties.gz file
+[00:06:32]: Starting: C:\jdk1.6.0_23\bin\java.exe -Dagent.home.dir=C:\TeamCity6.5\buildAgent -Dagent.name=Agouti -Dagent.ownPort=9090 -Dagent.work.dir=C:\TeamCity6.5\buildAgent\work -Dant.home=c:\ant -Dbuild.number=130 -Dbuild.vcs.number=3055 -Dbuild.vcs.number.1=3055 -Dbuild.vcs.number.RippleDown_Subversion=3055 -Dfile.encoding=Cp1252 -Dfile.separator=\ -Djava.io.tmpdir=C:\TeamCity6.5\buildAgent\temp\buildTmp -Dos.arch=amd64 "-Dos.name=Windows Vista" -Dos.version=6.0 -Dpath.separator=; -Dteamcity.agent.cpuBenchmark=404 -Dteamcity.agent.dotnet.agent_url=http://localhost:9090/RPC2 -Dteamcity.agent.dotnet.build_id=20257 -Dteamcity.auth.password=naxKuF7fyQoQPhDTjcO4EhYcA3fusBAU -Dteamcity.auth.userId=TeamCityBuildId=20257 -Dteamcity.build.changedFiles.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\changedFiles9106494502483966678.txt -Dteamcity.build.checkoutDir=C:\build -Dteamcity.build.id=20257 -Dteamcity.build.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.build6676499578941815931.properties -Dteamcity.build.tempDir=C:\TeamCity6.5\buildAgent\temp\buildTmp -Dteamcity.build.workingDir=C:\build "-Dteamcity.buildConfName=Unit Tests A" -Dteamcity.buildType.id=bt33 -Dteamcity.configuration.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.config2834820167931497237.properties -Dteamcity.dotnet.nunitaddin=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.TeamCity.NUnitAddin-NUnit -Dteamcity.dotnet.nunitlauncher=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher.exe -Dteamcity.dotnet.nunitlauncher.msbuild.task=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.MSBuildLoggers.dll -Dteamcity.dotnet.nunitlauncher1.1=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher1.1.exe -Dteamcity.dotnet.nunitlauncher2.0=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher2.0.exe -Dteamcity.dotnet.nunitlauncher2.0.vsts=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher2.0.VSTS.exe -Dteamcity.dotnet.platform=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.TeamCity.PlatformProcessRunner.1.1.exe -Dteamcity.projectName=RippleDown -Dteamcity.runner.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.runner2017244212150012394.properties -Dteamcity.runtime.props.file=C:\TeamCity6.5\buildAgent\temp\agentTmp\ant8435978601083802353runtime -Dteamcity.tests.recentlyFailedTests.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\testsToRunFirst8977058633404617594.txt "-Dteamcity.version=6.5.5 (build 18087)" -Duser.country=AU -Duser.home=C:\Users\builder.PKS -Duser.language=en -Duser.name=builder -Duser.timezone=Australia/Sydney -Duser.variant= -classpath C:\ant\lib\ant-launcher.jar org.apache.tools.ant.launch.Launcher -DgtaFileName=GTASettingsA.txt -lib C:/TeamCity6.5/buildAgent/plugins/antPlugin/ant-runtime.jar;C:/TeamCity6.5/buildAgent/lib/runtime-util.jar -listener jetbrains.buildServer.agent.ant.AgentBuildListener -buildfile C:\build\src\build.xml teamcity
+[00:06:32]: in directory: C:\build
+[00:06:33]: rm-classes
+[00:06:33]:	 [rm-classes] delete
+[00:06:33]:		 [delete] Deleting directory C:\build\classes\fruit
+[00:06:41]: init
+[00:06:41]: compile-nontest
+[00:06:41]:	 [compile-nontest] javac
+[00:06:42]:	 [compile-nontest] Compiling 1682 source files to C:\build\classes
+[00:07:02]:		 [javac] Note: C:\build\src\fruit\client\JideFrame.java uses or overrides a deprecated API.
+[00:07:02]:		 [javac] Note: Recompile with -Xlint:deprecation for details.
+[00:07:02]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[00:07:02]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[00:07:02]: intellij
+[00:07:02]:	 [intellij] javac2
+[00:07:05]:	 [intellij] Added @NotNull assertions to 546 files
+[00:07:05]: STG
+[00:07:06]:	 [STG] javac
+[00:07:06]:	 [STG] Compiling 102 source files to C:\build\classes
+[00:07:07]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[00:07:07]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[00:07:07]: HelpGenerator
+[00:07:11]: prop
+[00:07:11]:	 [prop] copy
+[00:07:11]:		 [copy] Copying 1241 files to C:\build\classes\fruit
+[00:07:14]: TCG
+[00:07:14]:	 [TCG] java
+[00:07:14]:		 [java] dataDirectory = C:\build\run\testdata
+[00:07:16]: wsgen
+[00:07:25]: compile-jasper
+[00:07:25]: compile-test
+[00:07:25]:	 [compile-test] javac
+[00:07:26]:	 [compile-test] Compiling 2882 source files to C:\build\classes
+[00:07:53]:		 [javac] Note: Some input files use or override a deprecated API.
+[00:07:53]:		 [javac] Note: Recompile with -Xlint:deprecation for details.
+[00:07:53]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[00:07:53]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[00:07:53]: compile
+[00:07:53]: clean-compile
+[00:07:53]: gta
+[00:07:53]:	 [gta] make.logging.properties
+[00:07:53]:		 [make.logging.properties] sequential
+[00:07:53]:			 [sequential] echo
+[00:07:53]:				 [echo] Making logging file with SEVERE: run/logging.properties
+[00:07:53]:			 [sequential] propertyfile
+[00:07:54]:				 [propertyfile] Updating property file: C:\build\run\logging.properties
+[00:07:54]:	 [gta] java
+[00:07:54]:		 [java] GrandTestAuto 4.0
+[00:07:55]:		 [java] About to run tests as follows:
+[00:07:55]:		 [java] Unit tests will be run.
+[00:07:55]:		 [java] Function tests will not be run.
+[00:07:55]:		 [java] Load tests will not be run.
+[00:07:55]:		 [java] Only packages between fruit.admin and fruit.apple.validate (inclusive) will be tested.
+[00:07:55]:		 [java] ########### Running Unit Tests ###########
+[00:07:56]:		 [java] EXCEPTION CATCHER REGISTERED
+[00:07:56]:		 [java] AppleTest
+[00:07:56]:		 [java]     blankDisplayNameTest passed
+[00:07:56]:		 [java]     canReferToTest passed
+[00:12:40]:		 [java] AppleManagerConcurrencyTest
+[00:12:40]:		 [java]     runTest passed
+[00:12:42]:		 [java] CVAReferenceTest
+[00:12:42]:		 [java]     runTest passed
+[00:13:07]:		 [java] TextCondenserNormalisationRegressionTest
+[00:13:07]:		 [java]     runTest passed
+[00:13:07]:		 [java] >>>> Results of Unit Tests for fruit.apple: passed. <<<< 311.313s. 349M.
+[00:13:07]:		 [java] UpdateCaseApplesTest
+[00:13:07]:		 [java]     constructorTest passed
+[00:13:07]:		 [java]     doItTest passed
+[00:13:07]:		 [java] >>>> Results of Unit Tests for fruit.apple.core: failed. <<<< 0.177s. 349M.
+[00:13:08]:		 [java] BadApplesTest
+[00:13:08]:		 [java]     actionButtonEnableTest passed
+[00:13:10]:		 [java] GoodApplesTest
+[00:13:12]:		 [java] >>>> Results of Unit Tests for fruit.apple.seed: passed. <<<< 5.435s. 350M.
+[00:13:16]:		 [java] TCAKeywordTest
+[00:13:16]:		 [java]     cancelEditTest passed
+[00:13:20]:		 [java] TrueMatchesFormulaTest
+[00:13:20]:		 [java]     toStringTest passed
+[00:13:20]:		 [java] >>>> Results of Unit Tests for fruit.apple.skin: failed. <<<< 7.329s. 350M.
+[00:13:20]:		 [java] IllegalAppleNameValidatorTest
+[00:13:20]:		 [java]     checkEmptyTest passed
+[00:13:20]:		 [java]     checkNameTest passed
+[00:13:20]:		 [java]     toStringTest passed
+[00:13:20]:		 [java] >>>> Results of Unit Tests for fruit.apple.validate: passed. <<<< 0.095s. 350M.
+[00:13:20]:		 [java] ******* Overall Unit Test Result: passed. *******
+[00:13:20]:		 [java] !!!!!!!!!!!!!Overall Test Result: passed !!!!!!!!!!!!!
+[00:13:21]: checkTestResults
+[00:13:21]: teamcity
+[00:13:21]: Process exited with code 0
+[00:13:21]: Publishing internal artifacts
+[00:13:21]:	 [Publishing internal artifacts] Sending build.finish.properties.gz file
+[00:13:26]: Build finished
