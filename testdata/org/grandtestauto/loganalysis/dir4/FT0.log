@@ -1,0 +1,35 @@
+[21:53:45]: gta
+[21:53:45]:	 [gta] make.logging.properties
+[21:53:45]:		 [make.logging.properties] sequential
+[21:53:45]:			 [sequential] echo
+[21:53:45]:				 [echo] Making logging file with SEVERE: run/logging.properties
+[21:53:45]:			 [sequential] propertyfile
+[21:53:45]:				 [propertyfile] Updating property file: C:\build\run\logging.properties
+[21:53:45]:	 [gta] java
+[21:53:45]:		 [java] GrandTestAuto 4.0
+[21:53:46]:		 [java] About to run tests as follows:
+[21:53:46]:		 [java] Unit tests will not be run.
+[21:53:46]:		 [java] Function tests will be run.
+[21:53:46]:		 [java] Load tests will not be run.
+[21:53:46]:		 [java] Only the package rippledown.admin.functiontest will be tested.
+[21:53:46]:		 [java] ########### Running Function Tests ###########
+[21:53:46]:		 [java] EXCEPTION CATCHER REGISTERED
+[21:53:46]:		 [java] Running Function Tests in rippledown.admin.functiontest....
+[21:53:56]:		 [java] Application selector showing.
+[21:54:08]:		 [java] AddOnlineFormsProject passed, 22.08s
+[21:54:15]:		 [java] Application selector showing.
+[21:54:23]:		 [java] Application selector showing.
+[21:54:26]:		 [java] Application selector showing.
+[21:54:30]:		 [java] Application selector showing.
+[21:54:32]:		 [java] Application selector showing.
+[21:54:38]:		 [java] DefaultUsersFunctionTest passed, 30.08s
+[21:54:45]:		 [java] Application selector showing.
+[21:54:52]:		 [java] EditServerSetting passed, 42.826s  * re-run
+[21:55:00]:		 [java] Application selector showing.
+[21:55:09]:		 [java] Application selector showing.
+[21:55:20]:		 [java] Application selector showing.
+[21:55:29]:		 [java] ExportOnlineProject passed, 37.055s
+[22:02:01]:		 [java] >>>> Results of Function Tests for rippledown.admin.functiontest: passed. <<<< 494.568s. 368M.
+[22:02:01]:		 [java] ******* Overall Function Test Result: passed. *******
+[22:02:01]:		 [java] !!!!!!!!!!!!!Overall Test Result: passed !!!!!!!!!!!!!
+[22:02:02]: checkTestResults

@@ -1,0 +1,132 @@
+Build 'RippleDown :: FT admin' #112 
+Started 'Wed Jan 11 21:53:06 EST 2012' on 'Capybara' by 'you'
+Finished 'Wed Jan 11 22:02:05 EST 2012' with status 'ERROR Failure'
+TeamCity URL http://192.168.1.114/viewLog.html?buildId=20236&buildTypeId=bt44 
+TeamCity server version is 6.5.5 (build 18087)
+
+[21:53:04]: bt44
+[21:53:04]: Checking for changes
+[21:53:03]: Clearing temporary directory: C:\TeamCity6.5\buildAgent\temp\buildTmp
+[21:53:04]: Checkout directory: C:\build
+[21:53:04]: Repository sources transferred
+[21:53:04]: Updating sources: server side checkout...
+[21:53:04]: Build preparation done
+[21:53:04]: Publishing internal artifacts
+[21:53:08]:	 [Publishing internal artifacts] Sending build.start.properties.gz file
+[21:53:04]: Starting: C:\jdk1.6.0_23\bin\java.exe -Dagent.home.dir=C:\TeamCity6.5\buildAgent -Dagent.name=Capybara -Dagent.ownPort=9090 -Dagent.work.dir=C:\TeamCity6.5\buildAgent\work -Dant.home=c:\ant -Dbuild.number=112 -Dbuild.vcs.number=3055 -Dbuild.vcs.number.1=3055 -Dbuild.vcs.number.RippleDown_Subversion=3055 -Dfile.encoding=Cp1252 -Dfile.separator=\ -Djava.io.tmpdir=C:\TeamCity6.5\buildAgent\temp\buildTmp -Dos.arch=amd64 "-Dos.name=Windows 7" -Dos.version=6.1 -Dpath.separator=; -Dteamcity.agent.cpuBenchmark=585 -Dteamcity.agent.dotnet.agent_url=http://localhost:9090/RPC2 -Dteamcity.agent.dotnet.build_id=20236 -Dteamcity.auth.password=PBFrvmbHkN9XTWJfNWxisNAMRxaSJMqr -Dteamcity.auth.userId=TeamCityBuildId=20236 -Dteamcity.build.changedFiles.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\changedFiles6573476565966087557.txt -Dteamcity.build.checkoutDir=C:\build -Dteamcity.build.id=20236 -Dteamcity.build.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.build8849156693599417072.properties -Dteamcity.build.tempDir=C:\TeamCity6.5\buildAgent\temp\buildTmp -Dteamcity.build.workingDir=C:\build "-Dteamcity.buildConfName=FT admin" -Dteamcity.buildType.id=bt44 -Dteamcity.configuration.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.config3742832144627947022.properties -Dteamcity.dotnet.nunitaddin=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.TeamCity.NUnitAddin-NUnit -Dteamcity.dotnet.nunitlauncher=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher.exe -Dteamcity.dotnet.nunitlauncher.msbuild.task=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.MSBuildLoggers.dll -Dteamcity.dotnet.nunitlauncher1.1=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher1.1.exe -Dteamcity.dotnet.nunitlauncher2.0=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher2.0.exe -Dteamcity.dotnet.nunitlauncher2.0.vsts=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.BuildServer.NUnitLauncher2.0.VSTS.exe -Dteamcity.dotnet.platform=C:\TeamCity6.5\buildAgent\plugins\dotnetPlugin\bin\JetBrains.TeamCity.PlatformProcessRunner.1.1.exe -Dteamcity.projectName=RippleDown -Dteamcity.runner.properties.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\teamcity.runner7628170567084269017.properties -Dteamcity.runtime.props.file=C:\TeamCity6.5\buildAgent\temp\agentTmp\ant4281303233426516190runtime -Dteamcity.tests.recentlyFailedTests.file=C:\TeamCity6.5\buildAgent\temp\buildTmp\testsToRunFirst6328456932075626669.txt "-Dteamcity.version=6.5.5 (build 18087)" -Duser.country=AU -Duser.home=C:\Users\Builder.PKS -Duser.language=en -Duser.name=builder -Duser.timezone=Australia/Sydney -Duser.variant= -classpath C:\ant\lib\ant-launcher.jar org.apache.tools.ant.launch.Launcher -DgtaFileName=FT_admin.txt -lib C:/TeamCity6.5/buildAgent/plugins/antPlugin/ant-runtime.jar;C:/TeamCity6.5/buildAgent/lib/runtime-util.jar -listener jetbrains.buildServer.agent.ant.AgentBuildListener -buildfile C:\build\src\build.xml teamcity
+[21:53:04]: in directory: C:\build
+[21:53:05]: rm-classes
+[21:53:05]:	 [rm-classes] delete
+[21:53:05]:		 [delete] Deleting directory C:\build\classes\rippledown
+[21:53:06]: init
+[21:53:06]: compile-nontest
+[21:53:06]:	 [compile-nontest] javac
+[21:53:07]:	 [compile-nontest] Compiling 1682 source files to C:\build\classes
+[21:53:16]:		 [javac] Note: C:\build\src\rippledown\client\JideFrame.java uses or overrides a deprecated API.
+[21:53:16]:		 [javac] Note: Recompile with -Xlint:deprecation for details.
+[21:53:16]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[21:53:16]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[21:53:16]: intellij
+[21:53:16]:	 [intellij] javac2
+[21:53:19]:	 [intellij] Added @NotNull assertions to 546 files
+[21:53:19]: STG
+[21:53:19]:	 [STG] javac
+[21:53:19]:	 [STG] Compiling 102 source files to C:\build\classes
+[21:53:20]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[21:53:20]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[21:53:20]: HelpGenerator
+[21:53:24]: prop
+[21:53:24]:	 [prop] copy
+[21:53:24]:		 [copy] Copying 1241 files to C:\build\classes\rippledown
+[21:53:25]: TCG
+[21:53:25]:	 [TCG] java
+[21:53:25]:		 [java] dataDirectory = C:\build\run\testdata
+[21:53:26]: wsgen
+[21:53:32]: compile-jasper
+[21:53:32]: compile-test
+[21:53:32]:	 [compile-test] javac
+[21:53:33]:	 [compile-test] Compiling 2882 source files to C:\build\classes
+[21:53:45]:		 [javac] Note: Some input files use or override a deprecated API.
+[21:53:45]:		 [javac] Note: Recompile with -Xlint:deprecation for details.
+[21:53:45]:		 [javac] Note: Some input files use unchecked or unsafe operations.
+[21:53:45]:		 [javac] Note: Recompile with -Xlint:unchecked for details.
+[21:53:45]: compile
+[21:53:45]: clean-compile
+[21:53:45]: gta
+[21:53:45]:	 [gta] make.logging.properties
+[21:53:45]:		 [make.logging.properties] sequential
+[21:53:45]:			 [sequential] echo
+[21:53:45]:				 [echo] Making logging file with SEVERE: run/logging.properties
+[21:53:45]:			 [sequential] propertyfile
+[21:53:45]:				 [propertyfile] Updating property file: C:\build\run\logging.properties
+[21:53:45]:	 [gta] java
+[21:53:45]:		 [java] GrandTestAuto 4.0
+[21:53:46]:		 [java] About to run tests as follows:
+[21:53:46]:		 [java] Unit tests will not be run.
+[21:53:46]:		 [java] Function tests will be run.
+[21:53:46]:		 [java] Load tests will not be run.
+[21:53:46]:		 [java] Only the package rippledown.admin.functiontest will be tested.
+[21:53:46]:		 [java] ########### Running Function Tests ###########
+[21:53:46]:		 [java] EXCEPTION CATCHER REGISTERED
+[21:53:46]:		 [java] Running Function Tests in rippledown.admin.functiontest....
+[21:53:56]:		 [java] Application selector showing.
+[21:54:08]:		 [java] AddOnlineFormsProject passed, 22.08s
+[21:54:15]:		 [java] Application selector showing.
+[21:54:23]:		 [java] Application selector showing.
+[21:54:26]:		 [java] Application selector showing.
+[21:54:30]:		 [java] Application selector showing.
+[21:54:32]:		 [java] Application selector showing.
+[21:54:38]:		 [java] DefaultUsersFunctionTest passed, 30.08s
+[21:54:45]:		 [java] Application selector showing.
+[21:54:52]:		 [java] EditServerSetting passed, 42.826s  * re-run
+[21:55:00]:		 [java] Application selector showing.
+[21:55:09]:		 [java] Application selector showing.
+[21:55:20]:		 [java] Application selector showing.
+[21:55:29]:		 [java] ExportOnlineProject passed, 37.055s
+[21:55:37]:		 [java] Application selector showing.
+[21:55:53]:		 [java] Application selector showing.
+[21:56:01]:		 [java] Application selector showing.
+[21:56:06]:		 [java] Application selector showing.
+[21:56:09]:		 [java] Application selector showing.
+[21:56:15]:		 [java] ExportOperationOverwrites passed, 45.957s
+[21:56:23]:		 [java] Application selector showing.
+[21:56:40]:		 [java] Application selector showing.
+[21:57:22]:		 [java] Application selector showing.
+[21:57:39]:		 [java] ExportProject passed, 83.266s
+[21:57:46]:		 [java] Application selector showing.
+[21:57:55]:		 [java] ImportPrimaryAttributesForAdmini passed, 16.691s
+[21:58:03]:		 [java] Application selector showing.
+[21:58:40]:		 [java] PerformHouseKeepingOnDemand passed, 44.912s
+[21:58:48]:		 [java] Application selector showing.
+[21:58:57]:		 [java] Application selector showing.
+[21:59:19]:		 [java] PersistEmailComment passed, 39.173s
+[21:59:27]:		 [java] Application selector showing.
+[21:59:37]:		 [java] Application selector showing.
+[21:59:41]:		 [java] Application selector showing.
+[21:59:47]:		 [java] ProjectCanBeExportedWhileEdited passed, 27.612s
+[21:59:55]:		 [java] Application selector showing.
+[22:00:03]:		 [java] Application selector showing.
+[22:00:34]:		 [java] PurgeEmailComment passed, 47.088s
+[22:00:42]:		 [java] Application selector showing.
+[22:00:50]:		 [java] Application selector showing.
+[22:01:20]:		 [java] RetryEmailComment passed, 45.712s
+[22:01:28]:		 [java] Application selector showing.
+[22:01:40]:		 [java] Application selector showing.
+[22:01:43]:		 [java] Application selector showing.
+[22:01:46]:		 [java] Application selector showing.
+[22:01:49]:		 [java] Application selector showing.
+[22:01:52]:		 [java] Application selector showing.
+[22:01:55]:		 [java] Application selector showing.
+[22:02:01]:		 [java] UpdateDefaultGroupAndUserFunctionTest passed, 40.842s
+[22:02:01]:		 [java] >>>> Results of Function Tests for rippledown.admin.functiontest: passed. <<<< 494.568s. 368M.
+[22:02:01]:		 [java] ******* Overall Function Test Result: passed. *******
+[22:02:01]:		 [java] !!!!!!!!!!!!!Overall Test Result: passed !!!!!!!!!!!!!
+[22:02:02]: checkTestResults
+[22:02:02]:	 [checkTestResults] fail
+[22:02:02]:		 [fail] There were test failures!!!!
+[22:02:02]: Process exited with code 1
+[22:02:02]: Ant output:
+[22:02:02]: Total time: 8 minutes 57 seconds
+[22:02:02]: Publishing internal artifacts
+[22:02:02]:	 [Publishing internal artifacts] Sending build.finish.properties.gz file
+[22:02:05]: Build finished
