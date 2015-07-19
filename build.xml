@@ -4,7 +4,7 @@
     <property name="lib" value="./lib"/>
     <property name="src" value="src"/>
     <property name="bak" value="./bak"/>
-    <property name="testdata" value="./testdata"/>
+    <property name="testdata" value="testdata"/>
     <property name="classes" value="./classes"/>
 
     <path id="classpath">
@@ -100,7 +100,9 @@
                 <fileset dir="lib">
                     <include name="*.jar"/>
                 </fileset>
-                <pathelement path="./testtemp" />
+                <pathelement path="./testtemp/classesroot" />
+                <pathelement path="./testtemp/prod" />
+                <pathelement path="./testtemp/tests" />
             </classpath>
             <arg value="GTARunAll.txt" />
             <assertions>

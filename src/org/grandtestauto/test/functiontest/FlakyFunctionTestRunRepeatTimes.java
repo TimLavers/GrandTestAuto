@@ -1,15 +1,11 @@
 package org.grandtestauto.test.functiontest;
 
 import org.grandtestauto.GrandTestAuto;
-import org.grandtestauto.Messages;
 import org.grandtestauto.assertion.Assert;
 import org.grandtestauto.test.Helpers;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * See the GrandTestAuto test specification.

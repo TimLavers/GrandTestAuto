@@ -21,8 +21,6 @@ package org.grandtestauto.settings;
 
 import org.grandtestauto.Messages;
 
-import java.util.Properties;
-
 /**
  * @author Tim Lavers
  */

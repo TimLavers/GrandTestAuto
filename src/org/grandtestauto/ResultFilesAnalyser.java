@@ -18,10 +18,6 @@ import org.grandtestauto.settings.SettingsSpecification;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author Tim Lavers

@@ -12,11 +12,9 @@
  *****************************************************************************/
 package org.grandtestauto.test;
 
-import javafx.scene.paint.Stop;
 import org.apache.commons.io.*;
 import org.grandtestauto.*;
 import org.grandtestauto.settings.*;
-import org.grandtestauto.test.functiontest.FailFast;
 import org.grandtestauto.util.*;
 
 import java.io.*;
@@ -31,6 +29,7 @@ import java.util.zip.*;
 public class Helpers {
 
     public static String NL = Messages.nl();
+    public static String LF = "\n";
     private static PrintStream oldOut;
     private static PrintStream newOut;
     private static ByteArrayOutputStream byteOut;
@@ -263,6 +262,14 @@ public class Helpers {
         return f;
     }
 
+    public static File classesDirClassic() {
+        File f = new File(tempDirectory(), "classesroot");
+        f.mkdirs();
+        assert f.exists();
+        assert f.isDirectory();
+        return f;
+    }
+
     /**
      * Cleans the temp directory.
      */
@@ -352,6 +359,10 @@ public class Helpers {
         return setupForZip( new File( zipName ) );
     }
 
+    public static GrandTestAuto setupForZipWithSeparateSourceAndTestClassRoots( File zip ) {
+        return null;
+    }
+
     public static GrandTestAuto setupForZip( File zip ) {
         return setupForZip( zip, true, true, true );
     }
@@ -400,8 +411,8 @@ public class Helpers {
 
     public static PackageChecker setupPackageChecker( File classesZip, String packageName ) {
         cleanTempDirectory();
-        expandZipTo(classesZip,  tempDirectory()  );
-        return new PackageChecker(tempDirectory(), packageName);
+        expandZipTo(classesZip,  classesDirClassic()  );
+        return new PackageChecker(classesDirClassic(), packageName);
     }
 
     public static String expandZipAndWriteSettingsFile( File zip, boolean runUnitTests, boolean runFunctionTests, boolean runLoadTests, String initialPackage, boolean logToConsole ) {
@@ -413,9 +424,9 @@ public class Helpers {
     }
 
     public static String expandZipAndWriteSettingsFile( File zip, boolean runUnitTests, boolean runFunctionTests, boolean runLoadTests, String initialPackage, String finalPackage, String singlePackage, boolean logToConsole, boolean logToFile, String logFileName, Boolean failFast, String initialTestWithinPackage, String finalTestWithinPackage, String singleTestWithinSinglePackage, String initialMethod, String finalMethod, String singleMethod ) {
-        expandZipTo( zip, tempDirectory() );
+        expandZipTo( zip, classesDirClassic() );
         //Write the settings file into the temp dir.
-        return writeSettingsFile( Helpers.tempDirectory(), runUnitTests, runFunctionTests, runLoadTests, initialPackage, finalPackage, singlePackage, logToConsole, logToFile, logFileName, failFast, initialTestWithinPackage, finalTestWithinPackage, singleTestWithinSinglePackage, initialMethod, finalMethod, singleMethod );
+        return writeSettingsFile( classesDirClassic(), runUnitTests, runFunctionTests, runLoadTests, initialPackage, finalPackage, singlePackage, logToConsole, logToFile, logFileName, failFast, initialTestWithinPackage, finalTestWithinPackage, singleTestWithinSinglePackage, initialMethod, finalMethod, singleMethod );
     }
 
     public static String runGTAInSeparateJVMAndReadSystemErr( File zip, boolean runUnitTests, boolean runFunctionTests, boolean runLoadTests, String initialPackage ) {

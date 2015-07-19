@@ -1,7 +1,6 @@
 package org.grandtestauto.test.functiontest;
 
 import org.grandtestauto.settings.ClassesRoot;
-import org.grandtestauto.settings.SettingsSpecification;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;
 import org.grandtestauto.test.*;
 import org.grandtestauto.*;

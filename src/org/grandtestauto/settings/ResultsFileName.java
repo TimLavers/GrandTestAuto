@@ -19,7 +19,6 @@
  *****************************************************************************/
 package org.grandtestauto.settings;
 
-import java.io.File;
 import java.util.Properties;
 
 /**

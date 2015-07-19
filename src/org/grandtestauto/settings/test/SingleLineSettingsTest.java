@@ -1,17 +1,9 @@
 package org.grandtestauto.settings.test;
 
-import org.apache.commons.io.FileUtils;
-import org.grandtestauto.Messages;
-import org.grandtestauto.Name;
-import org.grandtestauto.NameFilter;
-import org.grandtestauto.assertion.Assert;
-import org.grandtestauto.settings.SettingsSpecificationFromFile;
 //import org.grandtestauto.settings.SingleLineSettings;
 import org.grandtestauto.test.Helpers;
-import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
-import java.io.*;
-import java.util.*;
+        import java.io.*;
 
 /**
  * @author Tim Lavers

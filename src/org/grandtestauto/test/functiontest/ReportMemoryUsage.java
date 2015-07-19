@@ -1,6 +1,5 @@
 package org.grandtestauto.test.functiontest;
 
-import org.grandtestauto.Flaky;
 import org.grandtestauto.GrandTestAuto;
 import org.grandtestauto.test.Helpers;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;

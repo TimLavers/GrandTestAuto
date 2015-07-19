@@ -20,10 +20,6 @@
 package org.grandtestauto;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * A <code>CoverageUnitTester</code> created on the fly to cover testing for

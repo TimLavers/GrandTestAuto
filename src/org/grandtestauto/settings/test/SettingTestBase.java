@@ -19,14 +19,10 @@
  *****************************************************************************/
 package org.grandtestauto.settings.test;
 
-import org.grandtestauto.Messages;
-import org.grandtestauto.assertion.Assert;
-import org.grandtestauto.settings.RunFunctionTests;
 import org.grandtestauto.settings.SettingsSpecification;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;
 import org.grandtestauto.test.Helpers;
 
-import java.util.Properties;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 

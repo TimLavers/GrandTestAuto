@@ -22,12 +22,6 @@ package org.grandtestauto;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Method;
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Runs a single <code>AutoLoadTest</code>.
  *

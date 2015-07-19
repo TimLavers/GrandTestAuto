@@ -19,8 +19,6 @@
  *****************************************************************************/
 package org.grandtestauto.settings;
 
-import java.util.Properties;
-
 /**
  * @author Tim Lavers
  */

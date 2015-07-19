@@ -27,7 +27,6 @@ import org.grandtestauto.test.Helpers;
 
 import java.io.File;
 import java.util.Properties;
-import java.util.ResourceBundle;
 
 /**
  * @author Tim Lavers

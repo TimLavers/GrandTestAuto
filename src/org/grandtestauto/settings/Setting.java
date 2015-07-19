@@ -19,11 +19,7 @@
  *****************************************************************************/
 package org.grandtestauto.settings;
 
-import java.io.File;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.ResourceBundle;
-import java.util.Set;
 
 /**
  * One or more parameters that determine some aspect of the running of the tests.

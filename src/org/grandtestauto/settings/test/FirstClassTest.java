@@ -23,7 +23,6 @@ package org.grandtestauto.settings.test;
 
 import org.grandtestauto.assertion.Assert;
 import org.grandtestauto.settings.FirstClass;
-import org.grandtestauto.settings.FirstPackage;
 import org.grandtestauto.settings.SinglePackage;
 
 import java.util.Properties;

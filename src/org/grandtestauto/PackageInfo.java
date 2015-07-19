@@ -19,7 +19,6 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import javax.annotation.Generated;
 import java.io.*;
 import java.lang.annotation.*;
 import java.lang.reflect.*;

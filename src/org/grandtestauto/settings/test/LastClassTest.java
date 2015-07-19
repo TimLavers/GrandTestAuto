@@ -22,7 +22,6 @@
 package org.grandtestauto.settings.test;
 
 import org.grandtestauto.assertion.Assert;
-import org.grandtestauto.settings.FirstClass;
 import org.grandtestauto.settings.LastClass;
 import org.grandtestauto.settings.SinglePackage;
 

@@ -19,18 +19,10 @@
  *****************************************************************************/
 package org.grandtestauto.test;
 
-import org.grandtestauto.CoverageUnitTester;
 import org.grandtestauto.DefaultUnitTester;
 import org.grandtestauto.GrandTestAuto;
-import org.grandtestauto.Messages;
 import org.grandtestauto.assertion.Assert;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
-
-import java.io.File;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Tim Lavers
