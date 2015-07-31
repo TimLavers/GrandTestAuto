@@ -20,26 +20,21 @@
 package org.grandtestauto.settings;
 
 import java.io.File;
-import java.util.Properties;
+import java.io.IOException;
 
 /**
  * @author Tim Lavers
  */
-public class ClassesRoot extends FileSetting {
-    public static final String CLASSES_ROOT = "CLASSES_ROOT";
+public abstract class FileSetting implements Setting {
+    File value;
 
     @Override
-    public String key() {
-        return CLASSES_ROOT;
+    public Object valueInUserExplanation(SettingsSpecification settings) {
+        try {
+            return  settings.classesDir().getCanonicalPath().replaceAll("\\\\", "/");
+        } catch (IOException e) {
+            return "";
+        }
     }
-
-    public void buildFrom(Properties properties) {
-        value = new File(properties.getProperty(key(), System.getProperty("user.dir")));
-    }
-
-    public void addTo(SettingsSpecification settings) {
-        settings.setClassesRoot(value);
-    }
-
 }
 

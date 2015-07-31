@@ -88,12 +88,12 @@ public class ClassAnalyser {
     /**
      * Collects the testable methods by the names that their tests should have.
      */
-    private Map<String, Method> testNameToMethod = new HashMap<String, Method>();
+    private Map<String, Method> testNameToMethod = new HashMap<>();
 
     /**
      * Collects the testable constructors by the names that their tests should have.
      */
-    private Map<String, Constructor> testNameToConstructor = new HashMap<String, Constructor>();
+    private Map<String, Constructor> testNameToConstructor = new HashMap<>();
 
     /**
      * The representation of the given class as used in compound test names.
@@ -118,7 +118,7 @@ public class ClassAnalyser {
     public ClassAnalyser( Class clazz ) {
         klass = clazz;
         //Get all methods from this class and its superclasses and populate the map of testName to Method.
-        LinkedList<Method> methodsToTest = new LinkedList<Method>();
+        LinkedList<Method> methodsToTest = new LinkedList<>();
         addMethodsFrom( klass, methodsToTest );
         //At this point, methodsToTest is a list of all testable methods
         //from the class and its superclasses. The order of the elements
@@ -134,14 +134,14 @@ public class ClassAnalyser {
             }
         }
         //Get the set of testable constructors and populate the map of test name to constructor.
-        Set<Constructor> testable = new HashSet<Constructor>();
+        Set<Constructor> testable = new HashSet<>();
         //Get all of the constructors, then weed out inaccessible ones.
         if (!Modifier.isAbstract( clazz.getModifiers())) {
             Constructor[] constructors = klass.getDeclaredConstructors();
-            for (int i = 0; i < constructors.length; i++) {
-                int m = constructors[i].getModifiers();
-                if (Modifier.isPublic( m ) || Modifier.isProtected( m )) {
-                    testable.add( constructors[i] );
+            for (Constructor constructor : constructors) {
+                int m = constructor.getModifiers();
+                if (Modifier.isPublic(m) || Modifier.isProtected(m)) {
+                    testable.add(constructor);
                 }
             }
         }
@@ -191,14 +191,14 @@ public class ClassAnalyser {
      * The names of the constructor and method test methods that should be declared for the analysed class.
      */
     public SortedSet<String> testMethodNames() {
-        SortedSet<String> result = new TreeSet<String>();
+        SortedSet<String> result = new TreeSet<>();
         result.addAll( testNameToConstructor.keySet() );
         result.addAll( testNameToMethod.keySet() );
         return result;
     }
 
     public Collection<Constructor> testableConstructors() {
-        return testNameToConstructor.size() > 1 ? testNameToConstructor.values() : new LinkedList<Constructor>();
+        return testNameToConstructor.size() > 1 ? testNameToConstructor.values() : new LinkedList<>();
     }
 
     /**
@@ -233,7 +233,7 @@ public class ClassAnalyser {
     }
 
     private static String mangledNames( Class[] argClasses ) {
-        StringBuffer buff = new StringBuffer();
+        StringBuilder buff = new StringBuilder();
         for (int i = 0; i < argClasses.length; i++) {
             if (i == 0) {
                 buff.append( '_' );
@@ -280,7 +280,7 @@ public class ClassAnalyser {
      *                            (because there is more than one constructor to be tested).
      */
     private String getTestNameFor( Constructor c, boolean compoundNameNeeded ) {
-        StringBuffer buff = new StringBuffer();
+        StringBuilder buff = new StringBuilder();
         buff.append( CONSTRUCTOR );
         if (compoundNameNeeded) {
             Class[] argTypes = c.getParameterTypes();
@@ -297,7 +297,7 @@ public class ClassAnalyser {
     private static String testMethodName( Method m, LinkedList<Method> methodsToBeTested ) {
         String result;
         if (needsCompoundName( m, methodsToBeTested )) {
-            StringBuffer buff = new StringBuffer();
+            StringBuilder buff = new StringBuilder();
             buff.append( m.getName() );
             Class[] argClasses = m.getParameterTypes();
             buff.append( mangledNames( argClasses ) );
@@ -331,7 +331,7 @@ public class ClassAnalyser {
         }
 
         String name() {
-            StringBuffer result = new StringBuffer();
+            StringBuilder result = new StringBuilder();
             result.append( typeName );
             result.append( "Array" );
             if (dimension > 1) {

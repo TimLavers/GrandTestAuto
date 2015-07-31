@@ -19,6 +19,7 @@ import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.loganalysis.dir6.Dir6;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.loganalysis.dir7.Dir7;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.loganalysis.dir8.Dir8;
+import org.grandtestauto.test.dataconstants.org.grandtestauto.loganalysis.dir9.Dir9;
 
 import java.io.File;
 
@@ -29,32 +30,46 @@ import static org.grandtestauto.test.Helpers.NL;
  */
 public class ResultFilesAnalyserTest {
 
+    private final String allPresentAndCorrect = "All tests present and correct.";
+
+    public boolean testClassesSeparateFromProductionClassesTest() throws Exception {
+        Helpers.cleanTempDirectory();
+        File zip = new File(Grandtestauto.test130_zip);
+        Helpers.expandZipTo(zip, Helpers.temp2Directory());
+        String[] args = {Helpers.testClassesRoot().getAbsolutePath(), Dir9.PATH};
+        Helpers.startRecordingSout();
+        ResultFilesAnalyser.main(args);
+        String got = Helpers.stopRecordingSout();
+        Assert.azzert(got.contains(allPresentAndCorrect));
+        return true;
+    }
+
     public boolean mainTest() throws Exception {
         init(Grandtestauto.test36_zip);
-        String[] args = {Helpers.tempDirectory().getAbsolutePath(), Dir6.PATH};
+        String[] args = {Helpers.classesDirClassic().getAbsolutePath(), Dir6.PATH};
         Helpers.startRecordingSout();
         ResultFilesAnalyser.main(args);
         String got = Helpers.stopRecordingSout();
         String expected = "Analysing results files and classes..." + NL +
-                "Classes directory: " + Helpers.tempDirectory().getAbsolutePath() + NL +
+                "Classes directory: " + Helpers.classesDirClassic().getAbsolutePath() + NL +
                 "Log file directory: " + new File(Dir6.PATH).getAbsolutePath() + "." + NL +
                 "Log files:" + NL +
                 "TestLog1.txt" + NL +
                 "TestLog2.log" + NL +
                 "TestLog3.txt" + NL +
-                "All tests present and correct." + NL;
+                allPresentAndCorrect + NL;
         Assert.aequals(expected, got);
         return true;
     }
 
     public boolean mainWithUnitTestFailureTest() throws Exception {
         init(Grandtestauto.test36_zip);
-        String[] args = {Helpers.tempDirectory().getAbsolutePath(), Dir7.PATH};
+        String[] args = {Helpers.classesDirClassic().getAbsolutePath(), Dir7.PATH};
         Helpers.startRecordingSout();
         ResultFilesAnalyser.main(args);
         String got = Helpers.stopRecordingSout();
         String expected = "Analysing results files and classes..." + NL +
-                "Classes directory: " + Helpers.tempDirectory().getAbsolutePath() + NL +
+                "Classes directory: " + Helpers.classesDirClassic().getAbsolutePath() + NL +
                 "Log file directory: " + new File(Dir7.PATH).getAbsolutePath() + "." + NL +
                 "Log files:" + NL +
                 "TestLog1.txt" + NL +
@@ -68,13 +83,13 @@ public class ResultFilesAnalyserTest {
 
     public boolean mainWithFunctionTestFailureTest() throws Exception {
         init(Grandtestauto.test36_zip);
-        String[] args = {Helpers.tempDirectory().getAbsolutePath(), Dir8.PATH};
+        String[] args = {Helpers.classesDirClassic().getAbsolutePath(), Dir8.PATH};
         Helpers.startRecordingSout();
         ResultFilesAnalyser.main(args);
         String got = Helpers.stopRecordingSout();
         String failedPackageMessage = Messages.message(Messages.OPK_ONE_OR_MORE_TESTS_FAILED_IN, "a36.functiontest");
         String expected = "Analysing results files and classes..." + NL +
-                "Classes directory: " + Helpers.tempDirectory().getAbsolutePath() + NL +
+                "Classes directory: " + Helpers.classesDirClassic().getAbsolutePath() + NL +
                 "Log file directory: " + new File(Dir8.PATH).getAbsolutePath() + "." + NL +
                 "Log files:" + NL +
                 "TestLog1.txt" + NL +
@@ -89,6 +104,6 @@ public class ResultFilesAnalyserTest {
     private void init(String archiveName) {
         Helpers.cleanTempDirectory();
         File zip = new File(archiveName);
-        Helpers.expandZipTo(zip, Helpers.tempDirectory());
+        Helpers.expandZipTo(zip, Helpers.classesDirClassic());
     }
 }

@@ -26,6 +26,7 @@ class RunsTestsInPackages extends DPWImpl {
         try {
             runResult = ut.runTests();
         } catch (Throwable e) {
+            e.printStackTrace();
             String msg = Messages.message( Messages.OPK_ERROR_RUNNING_UNIT_TESTER_TEST, packageName );
             gta.resultsLogger().log( msg, null );
             runResult = false;

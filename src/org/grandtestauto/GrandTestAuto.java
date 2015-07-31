@@ -143,15 +143,15 @@ public class GrandTestAuto {
         this(settings, dpw, new ResultsLogger(settings.resultsFileName(), settings.logToConsole()));
     }
     
-    GrandTestAuto(final SettingsSpecification settings, DoPackageWork dpw, ResultsLogger resultsLogger) {
-        this.settings = settings;
+    GrandTestAuto(final SettingsSpecification settingsSpecification, DoPackageWork dpw, ResultsLogger resultsLogger) {
+        settings = settingsSpecification;
         this.resultsLogger = resultsLogger;
-        productionPackagesInfo = new PackagesInfo<PackageInfo>(packageName -> GrandTestAuto.this.settings.packageNameFilter().accept(packageName) && PackagesInfo.namesPackageThatMightNeedUnitTests(packageName), settings.productionClassesDir()) {
+        productionPackagesInfo = new PackagesInfo<PackageInfo>(packageName -> settings.packageNameFilter().accept(packageName) && PackagesInfo.namesPackageThatMightNeedUnitTests(packageName), settings.productionClassesDir()) {
             public PackageInfo createClassFinder(String packageName, File baseDir) {
                 return new PackageInfo(packageName, baseDir);
             }
         };
-        testPackagesInfo = new PackagesInfo<PackageInfo>(packageName -> GrandTestAuto.this.settings.packageNameFilter().accept(packageName) && PackagesInfo.namesPackageThatMightNeedUnitTests(packageName), settings.testClassesDir()) {
+        testPackagesInfo = new PackagesInfo<PackageInfo>(packageName -> settings.packageNameFilter().accept(packageName), settings.testClassesDir()) {
             public PackageInfo createClassFinder(String packageName, File baseDir) {
                 return new PackageInfo(packageName, baseDir);
             }
@@ -262,7 +262,7 @@ public class GrandTestAuto {
         if (worker.verbose() && !settings.lessVerboseLogging()) {
             resultsLogger.log(Messages.message(Messages.SK_RUNNING_UNIT_TESTS), null);
         }
-        List<String> packageNames = productionPackagesInfo.testablePackageNames();
+        List<String> packageNames = productionPackagesInfo().testablePackageNames();
         boolean result = true;
         for (String packageName : packageNames) {
             //Shortcut these tests if a test has failed.
@@ -277,8 +277,12 @@ public class GrandTestAuto {
         return result;
     }
 
-    PackagesInfo<PackageInfo> packagesInfo() {
+    PackagesInfo<PackageInfo> productionPackagesInfo() {
         return productionPackagesInfo;
+    }
+
+    PackagesInfo<PackageInfo> testPackagesInfo() {
+        return testPackagesInfo;
     }
 
     /**

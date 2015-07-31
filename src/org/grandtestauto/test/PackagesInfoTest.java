@@ -1,10 +1,13 @@
 package org.grandtestauto.test;
 
-import org.grandtestauto.*;
+import org.grandtestauto.PackageInfo;
+import org.grandtestauto.PackagesInfo;
+import org.grandtestauto.Testability;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
 import java.io.File;
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Unit test for <code>PackagesInfo</code>.
@@ -20,12 +23,12 @@ public class PackagesInfoTest {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File(Grandtestauto.test1_zip);
-        Helpers.expandZipTo(zip, Helpers.tempDirectory());
+        Helpers.expandZipTo(zip, Helpers.classesDirClassic());
         pi = new PackagesInfo<PackageInfo>(new PackagesInfo.Filter() {
             public boolean accept(String packageName) {
                 return PackagesInfo.namesPackageThatMightNeedUnitTests(packageName);
             }
-        }, Helpers.tempDirectory()) {
+        }, Helpers.classesDirClassic()) {
             public PackageInfo createClassFinder(String packageName, File baseDir) {
                 return new PackageInfo(packageName, baseDir);
             }
@@ -34,7 +37,7 @@ public class PackagesInfoTest {
 
     public boolean classesRootTest() throws Exception {
         init();
-        assert pi.classesRoot().equals(Helpers.tempDirectory());
+        assert pi.classesRoot().equals(Helpers.classesDirClassic());
         return true;
     }
 

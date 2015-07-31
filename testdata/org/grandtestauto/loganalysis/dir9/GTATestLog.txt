@@ -1,0 +1,23 @@
+About to run tests as follows:
+Unit tests will be run.
+Function tests will be run.
+Load tests will be run.
+
+########### Running Unit Tests ###########
+ATest
+    aTest passed
+TheExtraUnitTest
+    runTest passed
+>>>> Results of Unit Tests for a130.a: passed. <<<< 0.006s. 245M.
+******* Overall Unit Test Result: passed. *******
+########### Running Function Tests ###########
+Running Function Tests in a130.a.functiontest....
+TheFunctionTest passed, 0s
+>>>> Results of Function Tests for a130.a.functiontest: passed. <<<< 0s. 245M.
+******* Overall Function Test Result: passed. *******
+########### Running Load Tests ###########
+Running Load Tests in a130.a.loadtest....
+TheLoadTest passed, 0s
+>>>> Results of Load Tests for a130.a.loadtest: passed. <<<< 0s. 245M.
+******* Overall Load Test Result: passed. *******
+!!!!!!!!!!!!!Overall Test Result: passed !!!!!!!!!!!!!

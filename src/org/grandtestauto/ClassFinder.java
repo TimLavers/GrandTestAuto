@@ -19,8 +19,10 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import java.io.*;
-import java.util.logging.*;
+import java.io.File;
+import java.io.FileFilter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Searches a package for classes according to some criterion.
@@ -35,11 +37,7 @@ public abstract class ClassFinder {
     /**
      * Accepts class files.
      */
-    private static FileFilter classFileAccepter = new FileFilter() {
-        public boolean accept( File f ) {
-            return f.isFile() && f.getName().indexOf( ".class" ) > 0;
-        }
-    };
+    private static FileFilter classFileAccepter = f -> f.isFile() && f.getName().indexOf( ".class" ) > 0;
 
     /**
      * Creates a <code>ClassFinder</code> that searches the directory <code>classesDir</code>.
@@ -52,11 +50,14 @@ public abstract class ClassFinder {
     public void seek() {
         //Look for the classes.
         File[] classFiles = classesDir.listFiles( classFileAccepter );
-        for (int i = 0; i < classFiles.length; i++) {
+        if (classFiles == null) {
+            return;
+        }
+        for (File classFile : classFiles) {
             //Add the class name, having stripped off the ".class".
-            String className = classFiles[i].getName();
-            className = className.substring( 0, className.length() - 6 );
-            processClass( className );
+            String className = classFile.getName();
+            className = className.substring(0, className.length() - 6);
+            processClass(className);
         }
     }
 

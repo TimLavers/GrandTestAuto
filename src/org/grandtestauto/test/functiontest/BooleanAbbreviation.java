@@ -15,7 +15,7 @@ public class BooleanAbbreviation extends FTBase {
 
         //Write a settingsFile file.
         File settingsFile = new File(Helpers.tempDirectory(), "BadSettings.txt");
-        String clsRoot = Helpers.tempDirectory().getAbsolutePath().replace('\\', '/');
+        String clsRoot = Helpers.classesDirClassic().getAbsolutePath().replace('\\', '/');
         Properties props = new Properties();
         props.setProperty(ClassesRoot.CLASSES_ROOT, clsRoot);
         props.setProperty(RunUnitTests.RUN_UNIT_TESTS, "t");
@@ -23,7 +23,7 @@ public class BooleanAbbreviation extends FTBase {
         props.setProperty(RunLoadTests.RUN_LOAD_TESTS, "T");
         OutputStream os = new BufferedOutputStream(new FileOutputStream(settingsFile));
         props.store(os, getClass().getName());
-        Helpers.expandZipTo(new File(Grandtestauto.test36_zip), Helpers.tempDirectory());
+        Helpers.expandZipTo(new File(Grandtestauto.test36_zip), Helpers.classesDirClassic());
 
         SettingsSpecification settings = new SettingsSpecificationFromFile(settingsFile.getAbsolutePath());
         new GrandTestAuto(settings).runAllTests();

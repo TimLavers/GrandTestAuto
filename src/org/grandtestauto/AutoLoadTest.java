@@ -7,5 +7,5 @@ package org.grandtestauto;
  * should have a public no-args constructor.
  */
 public interface AutoLoadTest {
-    public boolean runTest() throws Exception;
+    boolean runTest() throws Exception;
 }

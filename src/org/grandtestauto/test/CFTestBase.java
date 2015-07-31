@@ -21,7 +21,7 @@ public class CFTestBase {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File( archiveName );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
-        classesDir = new File( Helpers.tempDirectory(), packageName.replace( '.', File.separatorChar ) );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
+        classesDir = new File( Helpers.classesDirClassic(), packageName.replace( '.', File.separatorChar ) );
     }
 }

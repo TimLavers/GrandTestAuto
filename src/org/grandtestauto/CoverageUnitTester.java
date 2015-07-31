@@ -73,7 +73,7 @@ public class CoverageUnitTester extends Coverage implements UnitTesterIF {
      * is defined.
      */
     public CoverageUnitTester(@NotNull GrandTestAuto gta) {
-        super(gta.packagesInfo().classesRoot());
+        super(gta.testPackagesInfo().classesRoot());
         this.gta = gta;
         resultsLogger = gta.resultsLogger();
     }
@@ -100,7 +100,7 @@ public class CoverageUnitTester extends Coverage implements UnitTesterIF {
 
     @Override
     PackageInfo productionPackageInfo() {
-        return gta.packagesInfo().packageInfo(packageTested());
+        return gta.productionPackagesInfo().packageInfo(packageTested());
     }
 
     @Override

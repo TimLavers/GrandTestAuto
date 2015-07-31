@@ -45,6 +45,7 @@ public class ClassesRootTest extends SettingTestBase {
         lvl.buildFrom(properties);
         lvl.addTo(settings);
         Assert.aequals(junk, settings.productionClassesDir());
+        Assert.aequals(junk, settings.testClassesDir());
         System.setProperty("user.dir", originalUserDir);
 
         settings = new DummySettings();
@@ -54,6 +55,7 @@ public class ClassesRootTest extends SettingTestBase {
         lvl.buildFrom(properties);
         lvl.addTo(settings);
         Assert.aequals(Helpers.tempDirectory(), settings.productionClassesDir());
+        Assert.aequals(Helpers.tempDirectory(), settings.testClassesDir());
 
         return true;
     }

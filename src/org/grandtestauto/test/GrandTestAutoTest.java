@@ -1,12 +1,15 @@
 package org.grandtestauto.test;
 
-import org.apache.commons.io.*;
-import org.grandtestauto.*;
+import org.apache.commons.io.FileUtils;
+import org.grandtestauto.GrandTestAuto;
 import org.grandtestauto.settings.ResultsFileName;
-import org.grandtestauto.test.dataconstants.org.grandtestauto.*;
+import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Unit test for <code>GrandTestAuto</code>.
@@ -81,7 +84,7 @@ public class GrandTestAutoTest {
         gta.resultsLogger().closeLogger();
 
         //A GTA that logs to a specific file.
-        log = new File( Helpers.tempDirectory(),  "GTATest.txt");
+        log = new File( Helpers.classesDirClassic(),  "GTATest.txt");
         gta = Helpers.setupForZip( new File( Grandtestauto.test1_zip ), true, false, false, null, false, true, log.getPath() );
         message = "Message2@" + System.currentTimeMillis();
         gta.resultsLogger().log( message, null);

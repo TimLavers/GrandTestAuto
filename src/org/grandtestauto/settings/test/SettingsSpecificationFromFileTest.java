@@ -1,11 +1,11 @@
 package org.grandtestauto.settings.test;
 
-import org.apache.commons.io.*;
+import org.apache.commons.io.FileUtils;
 import org.grandtestauto.Messages;
 import org.grandtestauto.Name;
 import org.grandtestauto.NameFilter;
 import org.grandtestauto.assertion.Assert;
-import org.grandtestauto.settings.SettingsSpecificationFromFile;
+import org.grandtestauto.settings.*;
 import org.grandtestauto.test.Helpers;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
@@ -19,6 +19,23 @@ public class SettingsSpecificationFromFileTest {
 
     private File tempDir = Helpers.tempDirectory();
     private SettingsSpecificationFromFile settings;
+
+    public boolean productionClassesRootTest() throws IOException {
+        Helpers.cleanTempDirectory();
+        File productionClassesRoot = new File(Helpers.tempDirectory(), "pcr");
+        Assert.azzert(productionClassesRoot.mkdirs(), "Could not create dir: '" + productionClassesRoot + "'");
+        File testClassesRoot = new File(Helpers.tempDirectory(), "tcr");
+        Assert.azzert(testClassesRoot.mkdirs(), "Could not create dir: '" + testClassesRoot + "'");
+        Properties props = new Properties();
+        props.put( ProductionClassesRoot.PROD_ROOT, productionClassesRoot.getAbsolutePath() );
+        props.put(ClassesRoot.CLASSES_ROOT, testClassesRoot.getAbsolutePath());
+        init(props, false);
+        Assert.azzert(settings.unknownKeys().isEmpty());
+        Assert.aequals(productionClassesRoot, settings.productionClassesDir());
+        Assert.aequals(testClassesRoot, settings.testClassesDir());
+
+        return true;
+    }
 
     public boolean singlePackageNameTest() throws Exception {
         String initialPackageName = null;
@@ -68,7 +85,7 @@ public class SettingsSpecificationFromFileTest {
         finalClassName = "X";
         initWithoutcleanup( true, true, true, true, true, null, null, null, singlePackageName, null, initialClassName, finalClassName, singleClassName, null, null, null );
         nameFilter = settings.classNameFilter();
-        assert nameFilter.equals( new NameFilter( NameFilter.Type.CLASS, "ExtraTest", "XtraTest", null ) );
+        assert nameFilter.equals(new NameFilter(NameFilter.Type.CLASS, "ExtraTest", "XtraTest", null));
         return true;
     }
 
@@ -216,9 +233,15 @@ public class SettingsSpecificationFromFileTest {
         }
     }
 
-    public boolean classesDirTest() throws Exception {
+    public boolean productionClassesDirTest() throws Exception {
         init( true, true, true, true, true );
         assert settings.productionClassesDir().equals( tempDir );
+        return true;
+    }
+
+    public boolean testClassesDirTest() throws Exception {
+        init(true, true, true, true, true );
+        assert settings.testClassesDir().equals( tempDir );
         return true;
     }
 
@@ -454,14 +477,14 @@ public class SettingsSpecificationFromFileTest {
 
     public boolean abbreviationsTest() throws IOException {
         Properties props = new Properties();
-        props.put( SettingsSpecificationFromFile.CLASSES_ROOT, Helpers.tempDirectory().getAbsolutePath() );
+        props.put( ClassesRoot.CLASSES_ROOT, Helpers.tempDirectory().getAbsolutePath() );
         init( props );
         assert settings.unknownKeys().isEmpty();
         props = new Properties();
-        props.put( SettingsSpecificationFromFile.LOG_TO_CONSOLE, "t" );
-        props.put( SettingsSpecificationFromFile.STOP_AT_FIRST_FAILURE, "T" );
-        props.put( SettingsSpecificationFromFile.RUN_FUNCTION_TESTS, "f" );
-        props.put( SettingsSpecificationFromFile.RUN_LOAD_TESTS, "F" );
+        props.put( LogToConsole.LOG_TO_CONSOLE, "t" );
+        props.put( StopAtFirstFailure.STOP_AT_FIRST_FAILURE, "T" );
+        props.put( RunFunctionTests.RUN_FUNCTION_TESTS, "f" );
+        props.put( RunLoadTests.RUN_LOAD_TESTS, "F" );
         init( props );
         assert settings.logToConsole();
         assert settings.stopAtFirstFailure();
@@ -478,7 +501,7 @@ public class SettingsSpecificationFromFileTest {
 
         //logToFile is true, no log file specified. Use default.
         init( true, true, true, true, true );
-        File expected = new File( SettingsSpecificationFromFile.DEFAULT_LOG_FILE_NAME );
+        File expected = new File( ResultsFileName.DEFAULT_LOG_FILE_NAME );
         Helpers.assertEqual( new File( settings.resultsFileName() ).getAbsolutePath(), expected.getAbsolutePath() );
 
         //logToFile is true, and a file is specified.
@@ -496,12 +519,12 @@ public class SettingsSpecificationFromFileTest {
         assert !s.lessVerboseLogging();
 
         //This file has value set to true.
-        properties.setProperty( SettingsSpecificationFromFile.LESS_VERBOSE, "true" );
+        properties.setProperty( LessVerboseLogging.LESS_VERBOSE, "true" );
         s = new SettingsSpecificationFromFile( writeSettingsFile(properties) );
         assert s.lessVerboseLogging();
 
         //This file has value set to false.
-        properties.setProperty( SettingsSpecificationFromFile.LESS_VERBOSE, "false" );
+        properties.setProperty( LessVerboseLogging.LESS_VERBOSE, "false" );
         s = new SettingsSpecificationFromFile( writeSettingsFile(properties) );
         assert !s.lessVerboseLogging();
         return true;
@@ -509,8 +532,8 @@ public class SettingsSpecificationFromFileTest {
 
     private String writeSettingsFile( Properties properties ) throws Exception {
         File settingsFile = new File( Helpers.tempDirectory(), "Settings.txt" );
-        if (!properties.containsKey( SettingsSpecificationFromFile.CLASSES_ROOT )) {
-            properties.put( SettingsSpecificationFromFile.CLASSES_ROOT, Helpers.tempDirectory().getCanonicalPath() );
+        if (!properties.containsKey( ClassesRoot.CLASSES_ROOT )) {
+            properties.put( ClassesRoot.CLASSES_ROOT, Helpers.tempDirectory().getCanonicalPath() );
         }
         properties.store( new BufferedWriter( new FileWriter( settingsFile ) ), "Settings written in test" );
         return settingsFile.getAbsolutePath();
@@ -526,26 +549,26 @@ public class SettingsSpecificationFromFileTest {
 
     public boolean unknownKeysTest() throws IOException {
         Properties props = new Properties();
-        props.put( SettingsSpecificationFromFile.CLASSES_ROOT, Helpers.tempDirectory().getAbsolutePath() );
+        props.put( ClassesRoot.CLASSES_ROOT, Helpers.tempDirectory().getAbsolutePath() );
         init( props );
         assert settings.unknownKeys().isEmpty();
         props = new Properties();
-        props.put( SettingsSpecificationFromFile.FINAL_CLASS_WITHIN_SINGLE_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.FINAL_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "" );
-        props.put( SettingsSpecificationFromFile.FINAL_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.INITIAL_CLASS_WITHIN_SINGLE_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.INITIAL_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "" );
-        props.put( SettingsSpecificationFromFile.INITIAL_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.LOG_FILE_NAME, "" );
-        props.put( SettingsSpecificationFromFile.LOG_TO_CONSOLE, "" );
-        props.put( SettingsSpecificationFromFile.LOG_TO_FILE, "" );
-        props.put( SettingsSpecificationFromFile.RUN_FUNCTION_TESTS, "" );
-        props.put( SettingsSpecificationFromFile.RUN_LOAD_TESTS, "" );
-        props.put( SettingsSpecificationFromFile.RUN_UNIT_TESTS, "" );
-        props.put( SettingsSpecificationFromFile.SINGLE_CLASS_WITHIN_SINGLE_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.SINGLE_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "" );
-        props.put( SettingsSpecificationFromFile.SINGLE_PACKAGE, "" );
-        props.put( SettingsSpecificationFromFile.STOP_AT_FIRST_FAILURE, "" );
+        props.put( LastClass.LAST_CLASS, "" );
+        props.put( LastMethod.LAST_METHOD, "" );
+        props.put( LastPackage.LAST_PACKAGE, "" );
+        props.put( FirstClass.FIRST_CLASS, "" );
+        props.put( FirstMethod.FIRST_METHOD, "" );
+        props.put( FirstPackage.FIRST_PACKAGE, "" );
+        props.put( ResultsFileName.LOG_FILE_NAME, "" );
+        props.put( LogToConsole.LOG_TO_CONSOLE, "" );
+        props.put( LogToFile.LOG_TO_FILE, "" );
+        props.put( RunFunctionTests.RUN_FUNCTION_TESTS, "" );
+        props.put( RunLoadTests.RUN_LOAD_TESTS, "" );
+        props.put( RunUnitTests.RUN_UNIT_TESTS, "" );
+        props.put( SingleClass.SINGLE_CLASS, "" );
+        props.put( SingleMethod.SINGLE_METHOD, "" );
+        props.put( SinglePackage.SINGLE_PACKAGE, "" );
+        props.put( StopAtFirstFailure.STOP_AT_FIRST_FAILURE, "" );
         init( props );
         assert settings.unknownKeys().isEmpty();
 
@@ -556,8 +579,8 @@ public class SettingsSpecificationFromFileTest {
         assert settings.unknownKeys().equals( expected ) : "Got: " + settings.unknownKeys();
 
         //The DEFAULT_... constant is not a key.
-        expected.add( SettingsSpecificationFromFile.DEFAULT_LOG_FILE_NAME );
-        props.put( SettingsSpecificationFromFile.DEFAULT_LOG_FILE_NAME, "jrwejri" );
+        expected.add( ResultsFileName.DEFAULT_LOG_FILE_NAME );
+        props.put( ResultsFileName.DEFAULT_LOG_FILE_NAME, "jrwejri" );
         init( props );
         assert settings.unknownKeys().equals( expected ) : "Got: " + settings.unknownKeys();
         return true;
@@ -566,28 +589,27 @@ public class SettingsSpecificationFromFileTest {
     public boolean commentedPropertiesWithTheseValuesTest() throws IOException {
         Properties props = new Properties();
         String tempPath = Helpers.tempDirectory().getAbsolutePath().replaceAll("\\\\", "/");
-        System.out.println("tempPath = " + tempPath);
-        props.put( SettingsSpecificationFromFile.CLASSES_ROOT, tempPath);
+        props.put( ClassesRoot.CLASSES_ROOT, tempPath);
         init( props );
         String value = settings.commentedPropertiesWithTheseValues();
         checkPropertiesString( value );
 
-        props.put( SettingsSpecificationFromFile.FINAL_CLASS_WITHIN_SINGLE_PACKAGE, "aaa" );
-        props.put( SettingsSpecificationFromFile.FINAL_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "aaa" );
-        props.put( SettingsSpecificationFromFile.FINAL_PACKAGE, "sddsd" );
-        props.put( SettingsSpecificationFromFile.INITIAL_CLASS_WITHIN_SINGLE_PACKAGE, "sda" );
-        props.put( SettingsSpecificationFromFile.INITIAL_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "vvvv" );
-        props.put( SettingsSpecificationFromFile.INITIAL_PACKAGE, "lsdfs" );
-        props.put( SettingsSpecificationFromFile.LOG_FILE_NAME, "ppmsf.txt" );
-        props.put( SettingsSpecificationFromFile.LOG_TO_CONSOLE, "false" );
-        props.put( SettingsSpecificationFromFile.LOG_TO_FILE, "false" );
-        props.put( SettingsSpecificationFromFile.RUN_FUNCTION_TESTS, "false" );
-        props.put( SettingsSpecificationFromFile.RUN_LOAD_TESTS, "false" );
-        props.put( SettingsSpecificationFromFile.RUN_UNIT_TESTS, "false" );
-        props.put( SettingsSpecificationFromFile.SINGLE_CLASS_WITHIN_SINGLE_PACKAGE, "erwer" );
-        props.put( SettingsSpecificationFromFile.SINGLE_METHOD_WITHIN_SINGLE_UNIT_TEST_CLASS, "wwerew" );
-        props.put( SettingsSpecificationFromFile.SINGLE_PACKAGE, "werwe" );
-        props.put( SettingsSpecificationFromFile.STOP_AT_FIRST_FAILURE, "true" );
+        props.put( LastClass.LAST_CLASS, "aaa" );
+        props.put( LastMethod.LAST_METHOD, "aaa" );
+        props.put( LastPackage.LAST_PACKAGE, "sddsd" );
+        props.put( FirstClass.FIRST_CLASS, "sda" );
+        props.put( FirstMethod.FIRST_METHOD, "vvvv" );
+        props.put( FirstPackage.FIRST_PACKAGE, "lsdfs" );
+        props.put( ResultsFileName.LOG_FILE_NAME, "ppmsf.txt" );
+        props.put( LogToConsole.LOG_TO_CONSOLE, "false" );
+        props.put( LogToFile.LOG_TO_FILE, "false" );
+        props.put( RunFunctionTests.RUN_FUNCTION_TESTS, "false" );
+        props.put( RunLoadTests.RUN_LOAD_TESTS, "false" );
+        props.put( RunUnitTests.RUN_UNIT_TESTS, "false" );
+        props.put( SingleClass.SINGLE_CLASS, "erwer" );
+        props.put( SingleMethod.SINGLE_METHOD, "wwerew" );
+        props.put( SinglePackage.SINGLE_PACKAGE, "werwe" );
+        props.put( StopAtFirstFailure.STOP_AT_FIRST_FAILURE, "true" );
         init( props );
         value = settings.commentedPropertiesWithTheseValues();
         checkPropertiesString( value );
@@ -612,8 +634,8 @@ public class SettingsSpecificationFromFileTest {
         //Check that each the key-value pair is preceded by the correct comment.
         ResourceBundle commentsRB = PropertyResourceBundle.getBundle( SettingsSpecificationFromFile.class.getName() );
         String[] asLines = value.split( "\\n" );
-        checkCommentPrecedesLineContaining( asLines, SettingsSpecificationFromFile.CLASSES_ROOT, commentsRB );
-        checkCommentPrecedesLineContaining( asLines, SettingsSpecificationFromFile.FINAL_CLASS_WITHIN_SINGLE_PACKAGE, commentsRB );
+        checkCommentPrecedesLineContaining( asLines, ClassesRoot.CLASSES_ROOT, commentsRB );
+        checkCommentPrecedesLineContaining( asLines, LastClass.LAST_CLASS, commentsRB );
 
         //Check that all of the keys are there.
     }
@@ -636,9 +658,14 @@ public class SettingsSpecificationFromFileTest {
         assert lines[pos + 1].trim().startsWith( key );
     }
 
+    private void init(Properties p) throws IOException {
+        init(p, true);
+    }
 
-    private void init( Properties p ) throws IOException {
-        Helpers.cleanTempDirectory();
+    private void init(Properties p, boolean cleanTemp) throws IOException {
+        if (cleanTemp) {
+            Helpers.cleanTempDirectory();
+        }
         File propsFile = new File( Helpers.tempDirectory(), "SettingsTest.txt" );
         BufferedOutputStream bos = new BufferedOutputStream( new FileOutputStream( propsFile ) );
         p.store( bos, "SettingsSpecificationFromFile test, " + new Date() );

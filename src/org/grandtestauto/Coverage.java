@@ -45,7 +45,7 @@ public abstract class Coverage {
     /**
      * Untested classes.
      */
-    private @NotNull Set<String> untestedClasses = new HashSet<String>();
+    private @NotNull Set<String> untestedClasses = new HashSet<>();
 
     /**
      * Records which methods are tested.
@@ -67,7 +67,7 @@ public abstract class Coverage {
     /**
      * Classes that have already been printed out in the results.
      */
-    private @NotNull Set<Class> classesAlreadyPrinted = new HashSet<Class>();
+    private @NotNull Set<Class> classesAlreadyPrinted = new HashSet<>();
 
     /**
      * Creates a <code>CoverageUnitTester</code> that will run unit tests
@@ -93,7 +93,7 @@ public abstract class Coverage {
         String testPackageName = packageTested + ".test.";
         //Run the minimal set of tests: those corresponding to public concrete classes in the package under test.
         //Record the names of the actual test classes that are run, so that we don't run them again later.
-        Set<String> namesOfTestClassesRunSoFar = new HashSet<String>();
+        Set<String> namesOfTestClassesRunSoFar = new HashSet<>();
 
         for (String className : pi.classNameToTestability().keySet()) {
             //Curtail tests if we've already failed and failfast is on.
@@ -219,23 +219,11 @@ public abstract class Coverage {
 
     private void reportUntested() {
         //Are there any untested classes to report?
-        reportUntested( untestedClasses, Messages.TPK_CK_CLASSES_NOT_TESTED, new ItemFormatter() {
-            public String format( Object o ) {
-                return o.toString();
-            }
-        } );
+        reportUntested( untestedClasses, Messages.TPK_CK_CLASSES_NOT_TESTED, Object::toString);
         //Are there any untested constructors?
-        reportUntested( accountant.untestedConstructors(), Messages.CK_CONSTRUCTOR_TESTS_EXPECTED, new ItemFormatter() {
-            public String format( Object o ) {
-                return o.toString();
-            }
-        } );
+        reportUntested( accountant.untestedConstructors(), Messages.CK_CONSTRUCTOR_TESTS_EXPECTED, Object::toString);
         //Are there any untested methods?
-        reportUntested( accountant.untestedMethods(), Messages.TPK_CK_METHODS_NOT_TESTED, new ItemFormatter() {
-            public String format( Object o ) {
-                return o.toString();
-            }
-        } );
+        reportUntested( accountant.untestedMethods(), Messages.TPK_CK_METHODS_NOT_TESTED, Object::toString);
     }
 
     private interface ItemFormatter {

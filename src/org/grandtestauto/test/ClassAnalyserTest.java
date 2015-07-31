@@ -1,11 +1,15 @@
 package org.grandtestauto.test;
 
-import org.grandtestauto.*;
-import org.grandtestauto.test.dataconstants.org.grandtestauto.*;
+import org.grandtestauto.ClassAnalyser;
+import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Unit test for <code>ClassAnalyser</code>.
@@ -121,7 +125,7 @@ public class ClassAnalyserTest {
         //This test uses the classes in the test package a8.
         Helpers.cleanTempDirectory();
         File zip = new File( Grandtestauto.test8_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         Class x = Class.forName( "a8.X" );
         ClassAnalyser ca = new ClassAnalyser( x );
 
@@ -167,7 +171,7 @@ public class ClassAnalyserTest {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File(Grandtestauto.test6_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         boolean b = true;
         Class<?> x = Class.forName( "a6.X" );
         //First the public statics.
@@ -305,7 +309,7 @@ public class ClassAnalyserTest {
         //Use the package a18.
         Helpers.cleanTempDirectory();
         zip = new File( Grandtestauto.test18_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         x = Class.forName( "a18.X" );
         //First the declared compareTo method.
         meth = x.getDeclaredMethod( "compareTo", x );
@@ -323,7 +327,7 @@ public class ClassAnalyserTest {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File( Grandtestauto.test6_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         boolean b = true;
         Class x = Class.forName( "a6.X" );
         ClassAnalyser ca = new ClassAnalyser( x );
@@ -376,7 +380,7 @@ public class ClassAnalyserTest {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File( Grandtestauto.test6_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         Class x = Class.forName( "a6.X" );
         ClassAnalyser ca = new ClassAnalyser( x );
         result &= ca.analysedClass().equals( x );
@@ -387,7 +391,7 @@ public class ClassAnalyserTest {
         //Expand the zip archive into the temp directory.
         Helpers.cleanTempDirectory();
         File zip = new File( Grandtestauto.test6_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         Class x = Class.forName( "a6.X" );
         ClassAnalyser ca = new ClassAnalyser( x );
         return ca.analysedClass().equals( x );
@@ -398,7 +402,7 @@ public class ClassAnalyserTest {
         //This test uses the classes in the test package a8.
         Helpers.cleanTempDirectory();
         File zip = new File( Grandtestauto.test8_zip );
-        Helpers.expandZipTo( zip, Helpers.tempDirectory() );
+        Helpers.expandZipTo( zip, Helpers.classesDirClassic() );
         Class x = Class.forName( "a8.X" );
         ClassAnalyser ca = new ClassAnalyser( x );
         //Here are the constructors:

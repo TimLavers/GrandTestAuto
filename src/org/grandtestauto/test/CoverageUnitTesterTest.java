@@ -21,13 +21,19 @@
  */
 package org.grandtestauto.test;
 
-import org.grandtestauto.*;
+import org.grandtestauto.CoverageUnitTester;
+import org.grandtestauto.GrandTestAuto;
+import org.grandtestauto.Messages;
 import org.grandtestauto.assertion.Assert;
-import org.grandtestauto.test.dataconstants.org.grandtestauto.*;
+import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Unit test for <code>CoverageUnitTester</code>.
@@ -46,6 +52,12 @@ public class CoverageUnitTesterTest {
     public static void recordTestCreated(Class testClass) {
         testsCreated.add(testClass.getName());
     }
+
+//    public boolean coverageWithSplitClassHierarchyTest() throws Exception {
+//        CoverageUnitTester cut = cutForConfiguredPackageWithSplitClasses(Grandtestauto.test30_zip, "a130.test");
+//        assert cut.runTests();
+//        return true;
+//    }
 
     public boolean classAnnotatedWithHomeGrownDoesNotNeedTestDoesNotNeedTest() throws Exception {
         CoverageUnitTester cut = cutForConfiguredPackage(Grandtestauto.test122_zip, "a122.test", null, null, null, null, null);
@@ -523,6 +535,18 @@ public class CoverageUnitTesterTest {
         String log = Helpers.logFileContents();
         System.out.println("log = " + log);
         return true;
+    }
+
+    private CoverageUnitTester cutForConfiguredPackageWithSplitClasses(String zipName, String packageName) {
+        try {
+            GrandTestAuto gta = Helpers.setupForZipWithSeparateSourceAndTestClassRoots(new File(zipName));
+            Class<?> ut = Class.forName(packageName + ".UnitTester");
+            Constructor ctr = ut.getConstructor(GrandTestAuto.class);
+            return (CoverageUnitTester) ctr.newInstance(gta);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new AssertionError("See above stack trace.");
+        }
     }
 
     private CoverageUnitTester cutForConfiguredPackage(String zipName, String packageName, String singlePackage, String singleTest, String initialTestMethod, String finalTestMethod, String singleTestMethod) {

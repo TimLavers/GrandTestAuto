@@ -34,33 +34,12 @@ import java.util.stream.Stream;
  * @author Tim Lavers
  */
 public abstract class SettingsSpecification {
-    public static SortedSet<Name> subDirectoriesAsNames(File root) {
-        SortedSet<Name> result = new TreeSet<>();
-        addSubdirectoriesToDirectoryList(result, null, root);
-        return result;
-    }
-
-    private static void addSubdirectoriesToDirectoryList(Set<Name> list, final Name base, File baseDir) {
-        File[] subDirs = baseDir.listFiles(File::isDirectory);
-        if (subDirs == null) return;
-        for (File subDir : subDirs) {
-            Name newName = base == null ? Name.dotSeparatedName(subDir.getName()) : new Name(base, subDir.getName());
-            addSubdirectoriesToDirectoryList(list, newName, subDir);
-            list.add(newName);
-        }
-    }
-
-    public static String NL = System.getProperty("line.separator");
-
     /**
      * The name for the results file, if not set explicitly.
      */
     public static final String DEFAULT_LOG_FILE_NAME = "GTAResults.txt";
-
-    private List<Setting> settings = new LinkedList<>();
-
+    public static String NL = System.getProperty("line.separator");
     String resultsFileName = DEFAULT_LOG_FILE_NAME;
-    private File classesRoot;
     boolean logToFile = true;
     String initialPackageName = null;
     String finalPackageName = null;
@@ -77,13 +56,17 @@ public abstract class SettingsSpecification {
     String finalMethod = null;
     String singleMethod = null;
     boolean lessVerboseLogging = false;
+    private List<Setting> settings = new LinkedList<>();
+//    private File classesRoot;
+    private File productionClassesRoot;
+    private File testClassesRoot;
     private SortedSet<Name> packagesAsNames;
     private NameFilter packageNameFilter = new NameFilter(NameFilter.Type.PACKAGE, null, null, null);
     private NameFilter classNameFilter = new NameFilter(NameFilter.Type.CLASS, null, null, null);
     private NameFilter methodNameFilter = new NameFilter(NameFilter.Type.METHOD, null, null, null);
-
     public SettingsSpecification() {
         settings.add(new ClassesRoot());
+        settings.add(new ProductionClassesRoot());
         settings.add(new LogToFile());
         settings.add(new LogToConsole());
         settings.add(new ResultsFileName());
@@ -103,6 +86,22 @@ public abstract class SettingsSpecification {
         settings.add(new LessVerboseLogging());
     }
 
+    public static SortedSet<Name> subDirectoriesAsNames(File root) {
+        SortedSet<Name> result = new TreeSet<>();
+        addSubdirectoriesToDirectoryList(result, null, root);
+        return result;
+    }
+
+    private static void addSubdirectoriesToDirectoryList(Set<Name> list, final Name base, File baseDir) {
+        File[] subDirs = baseDir.listFiles(File::isDirectory);
+        if (subDirs == null) return;
+        for (File subDir : subDirs) {
+            Name newName = base == null ? Name.dotSeparatedName(subDir.getName()) : new Name(base, subDir.getName());
+            addSubdirectoriesToDirectoryList(list, newName, subDir);
+            list.add(newName);
+        }
+    }
+
     Stream<Setting> settingsStream() {
         return settings.stream();
     }
@@ -111,14 +110,15 @@ public abstract class SettingsSpecification {
      * The directory containing all of the classes in the project being tested.
      */
     File classesDir() {
-        return classesRoot;
+        return testClassesRoot;
     }
+
     public File productionClassesDir() {
-        return classesRoot;
+        return productionClassesRoot;
     }
 
     public File testClassesDir() {
-        return classesRoot;
+        return testClassesRoot;
     }
 
     public String summary() {
@@ -146,13 +146,25 @@ public abstract class SettingsSpecification {
         }
     }
 
-    void setClassesRoot(File classesRoot) {
-        this.classesRoot = classesRoot;
-        if (!classesRoot.isDirectory() || !classesRoot.exists()) {
-            String errorMessage = Messages.message(Messages.OPK_CLASSES_DIRECTORY_DOES_NOT_EXIST, classesRoot.getAbsolutePath());
+    void setClassesRoot(File root) {
+        checkDirectory(root);
+        if (productionClassesRoot == null) {
+            productionClassesRoot = root;
+        }
+        testClassesRoot = root;
+        packagesAsNames = subDirectoriesAsNames(root);
+    }
+
+    void setProductionClassesRoot(File root) {
+        checkDirectory(root);
+        productionClassesRoot = root;
+    }
+
+    private void checkDirectory(File root) {
+        if (!root.isDirectory() || !root.exists()) {
+            String errorMessage = Messages.message(Messages.OPK_CLASSES_DIRECTORY_DOES_NOT_EXIST, root.getAbsolutePath());
             throw new IllegalArgumentException(errorMessage);
         }
-        packagesAsNames = subDirectoriesAsNames(classesRoot);
     }
 
     void setLogToFile(Boolean value) {
@@ -342,7 +354,7 @@ public abstract class SettingsSpecification {
 
     private String getFirstMatchingClass(String abbreviated) {
         assert singlePackageName != null : "GTA Bug...please report to comments@grandtestauto.org";
-        assert classesRoot != null : "GTA Bug...please report to comments@grandtestauto.org";
+//        assert classesRoot != null : "GTA Bug...please report to comments@grandtestauto.org";
         if (abbreviated == null) return null;
         String trimmed = abbreviated.trim();
         if (trimmed.isEmpty()) return null;
@@ -353,7 +365,7 @@ public abstract class SettingsSpecification {
         } else {
             actualTestPackageName = singlePackageName;
         }
-        File classesDir = new File(classesRoot, actualTestPackageName.replace('.', File.separatorChar));
+        File classesDir = new File(testClassesRoot, actualTestPackageName.replace('.', File.separatorChar));
         //We have to be defensive here, as the classes dir is derived from user input and might not exist.
         if (classesDir.exists()) {
             TestFinder testFinder = new TestFinder(actualTestPackageName, classesDir);

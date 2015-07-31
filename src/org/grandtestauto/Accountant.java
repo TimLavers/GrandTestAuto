@@ -19,8 +19,10 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import java.lang.reflect.*;
-import java.util.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Checks that all of the testable classes in a package are
@@ -33,17 +35,17 @@ class Accountant {
     /**
      * Methods for which a test method was expected but not found.
      */
-    private Set<Method> untestedMethods = new HashSet<Method>();
+    private Set<Method> untestedMethods = new HashSet<>();
 
     /**
      * Methods for which a test has been found.
      */
-    private Set<Method> testedMethods = new HashSet<Method>();
+    private Set<Method> testedMethods = new HashSet<>();
 
     /**
      * Constructors for which no test has been found.
      */
-    private Set<Constructor> untestedConstructors = new HashSet<Constructor>();
+    private Set<Constructor> untestedConstructors = new HashSet<>();
 
     /**
      * Record that a test method for <code>m</code> was sought but not found.

@@ -24,11 +24,22 @@ import org.grandtestauto.GrandTestAuto;
 import org.grandtestauto.assertion.Assert;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
+import java.io.File;
+
 /**
  * @author Tim Lavers
  */
 public class DefaultUnitTesterTest {
+    public boolean coverageWithSplitClassHierarchyTest() throws Exception {
+        init();
+        GrandTestAuto gta = Helpers.setupForZipWithSeparateSourceAndTestClassRoots(new File(Grandtestauto.test130_zip));
+        DefaultUnitTester dut = new DefaultUnitTester(gta, "a130.test");
+        assert dut.runTests();
+        return true;
+    }
+
     public boolean constructorTest() throws Exception {
+        init();
         GrandTestAuto gta = Helpers.setupForZip( Grandtestauto.test12_zip );
         DefaultUnitTester dut = new DefaultUnitTester(gta, "a12.test");
         boolean testResult = dut.runTests();
@@ -36,4 +47,7 @@ public class DefaultUnitTesterTest {
         return true;
     }
 
+    private void init() {
+        Helpers.cleanTempDirectory();
+    }
 }

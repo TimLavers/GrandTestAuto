@@ -94,15 +94,18 @@
     </target>
 
     <target name="test">
+        <mkdir dir="./testtemp2/prod"/>
+        <mkdir dir="./testtemp2/tests"/>
+        <mkdir dir="./testtemp/classesroot"/>
         <java classname="org.grandtestauto.GrandTestAuto" fork="true" maxmemory="384m">
             <classpath>
                 <pathelement path="${classes}"/>
                 <fileset dir="lib">
                     <include name="*.jar"/>
                 </fileset>
+                <pathelement path="./testtemp2/prod" />
+                <pathelement path="./testtemp2/tests" />
                 <pathelement path="./testtemp/classesroot" />
-                <pathelement path="./testtemp/prod" />
-                <pathelement path="./testtemp/tests" />
             </classpath>
             <arg value="GTARunAll.txt" />
             <assertions>

@@ -25,21 +25,26 @@ import java.util.Properties;
 /**
  * @author Tim Lavers
  */
-public class ClassesRoot extends FileSetting {
-    public static final String CLASSES_ROOT = "CLASSES_ROOT";
+public class ProductionClassesRoot extends FileSetting {
+    public static final String PROD_ROOT = "PROD_ROOT";
 
     @Override
     public String key() {
-        return CLASSES_ROOT;
+        return PROD_ROOT;
     }
 
     public void buildFrom(Properties properties) {
-        value = new File(properties.getProperty(key(), System.getProperty("user.dir")));
+        if (!properties.containsKey(PROD_ROOT)) {
+            value = null;
+        } else {
+            value = new File(properties.getProperty(key()));
+        }
     }
 
     public void addTo(SettingsSpecification settings) {
-        settings.setClassesRoot(value);
+        if (value != null) {
+            settings.setProductionClassesRoot(value);
+        }
     }
-
 }
 
