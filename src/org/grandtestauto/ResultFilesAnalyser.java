@@ -1,5 +1,4 @@
 /****************************************************************************
- * Copyright 2012 Timothy Gordon Lavers (Australia)
  *
  *                          The Wide Open License (WOL)
  *
@@ -12,7 +11,6 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import org.grandtestauto.*;
 import org.grandtestauto.loganalysis.LogDirectoryAnalyser;
 import org.grandtestauto.settings.SettingsSpecification;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;

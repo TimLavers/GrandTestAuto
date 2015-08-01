@@ -1,11 +1,5 @@
 /****************************************************************************
  *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2015 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -26,29 +20,15 @@ import java.util.*;
 public class SettingsSpecificationFromFile extends SettingsSpecification {
     private Set<String> unknownKeys = new HashSet<>();
 
-    /**
-     * A <code>Settings</code> that can be used to produce model settings
-     * using {@link  #commentedPropertiesWithTheseValues()},  for showing to the user.
-     */
     public SettingsSpecificationFromFile() {
         this(new File( System.getProperty( "user.dir" ) ));
     }
 
-    /**
-     * A <code>Settings</code> that can be used to produce model settings
-     * using {@link  #commentedPropertiesWithTheseValues()},  for showing to the user.
-     */
     public SettingsSpecificationFromFile(File classesRoot) {
         setClassesRoot(classesRoot);
         logToConsole = true;
     }
 
-    /**
-     * Creates a <code>Settings</code> that gets its parameters
-     * from the named file. Defaults are used for missing properties.
-     *
-     * @throws IOException if the settings file can't be read or if the log file is needed but cannot be opened.
-     */
     public SettingsSpecificationFromFile(String settingsFileName) throws IOException {
         Properties props = new Properties();
         InputStream is = new BufferedInputStream( new FileInputStream(new File( settingsFileName )) );

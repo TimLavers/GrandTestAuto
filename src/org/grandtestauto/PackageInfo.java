@@ -1,13 +1,5 @@
 /****************************************************************************
  *
- * Name: PackageInfo.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -19,11 +11,11 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import java.io.*;
-import java.lang.annotation.*;
-import java.lang.reflect.*;
-import java.rmi.*;
-import java.util.*;
+import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Modifier;
+import java.rmi.Remote;
+import java.util.TreeMap;
 
 /**
  * Finds the testable classes in a package.
@@ -32,7 +24,7 @@ import java.util.*;
  */
 public class PackageInfo extends ClassFinder {
 
-    private TreeMap<String, Testability> classNameToTestability = new TreeMap<String, Testability>();
+    private TreeMap<String, Testability> classNameToTestability = new TreeMap<>();
 
     /**
      * Creates a <code>PackageInfo</code> that searches the

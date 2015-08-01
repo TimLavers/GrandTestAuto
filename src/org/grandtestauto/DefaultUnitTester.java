@@ -1,13 +1,4 @@
 /****************************************************************************
- *
- * Name: CoverageUnitTester.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its

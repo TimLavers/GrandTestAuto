@@ -19,7 +19,8 @@
 *****************************************************************************/
 package org.grandtestauto;
 
-import java.util.logging.*;
+import java.util.logging.Formatter;
+import java.util.logging.LogRecord;
 
 
 /**
@@ -33,7 +34,7 @@ public class ResultsFormatter extends Formatter {
 	 * Returns <code>record.getMessage()</code> with a newline appended.
 	 */
 	public String format( LogRecord record ) {
-	    StringBuffer result = new StringBuffer();
+	    StringBuilder result = new StringBuilder();
 		result.append( record.getMessage() );
 		result.append( Messages.nl() );
         Throwable thrown = record.getThrown();

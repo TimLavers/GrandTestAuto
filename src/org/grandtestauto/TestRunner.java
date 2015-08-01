@@ -25,7 +25,6 @@ import org.jetbrains.annotations.Nullable;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Comparator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -55,10 +54,8 @@ class TestRunner {
         this.invoker = invoker;
         //Compare methodsToRun based on their name alone, as no two
         //test methods can have the same name.
-        methodsToRun = new TreeSet<Method>(new Comparator<Method>() {
-            public int compare(Method m1, Method m2) {
-                return m1.getName().compareTo(m2.getName());
-            }
+        methodsToRun = new TreeSet<>((m1, m2) -> {
+            return m1.getName().compareTo(m2.getName());
         });
         //Get all test methods.
         Method[] allDeclared = testClass.getDeclaredMethods();
@@ -71,30 +68,15 @@ class TestRunner {
         }
     }
 
-    /**
-     * @throws <code>InstantiationException</code>
-     *          if the test class does
-     *          not have a no-args constructor or is not concrete.
-     * @throws <code>IllegalAccessException</code>
-     *          if the test class
-     *          or its no-args constructor are not public.
-     * @throws <code>InvocationTargetException</code>
-     *          if a test method
-     *          throws an exception when invoked.
-     */
     boolean runTestMethods(@NotNull Coverage cut, @Nullable ClassAnalyser analyser) {
         boolean result = true;
         //Object to call the test methods on.
         Object testObj = null;
         try {
             testObj = testClass.newInstance();
-        } catch (InstantiationException ie) {
+        } catch (InstantiationException | IllegalAccessException ie) {
             //The test class is badly written.
             cut.testingError(Messages.message(Messages.OPK_COULD_NOT_CREATE_TEST_CLASS, testClass.getName()), ie);
-            result = false;
-        } catch (IllegalAccessException iae) {
-            //The test class is badly written.
-            cut.testingError(Messages.message(Messages.OPK_COULD_NOT_CREATE_TEST_CLASS, testClass.getName()), iae);
             result = false;
         }
         //Empty params array for invoking test methods.

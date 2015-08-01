@@ -70,7 +70,7 @@ class RunsTestsInPackages extends DPWImpl {
 
     @Override
     public List<String> preliminaryMessages() {
-        List<String> result = new LinkedList<String>();
+        List<String> result = new LinkedList<>();
         if (!gta.settings().lessVerboseLogging()) {
             result.add(Messages.message(Messages.SK_ABOUT_TO_RUN_TESTS));
             result.add(gta.settings().summary());

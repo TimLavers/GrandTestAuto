@@ -1,6 +1,9 @@
 package org.grandtestauto;
 
-import java.util.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class Name implements Comparable<Name> {
     private String[] parts;
@@ -12,7 +15,7 @@ public class Name implements Comparable<Name> {
 
     public static Name camelCaseName( String name ) {
         assert name.length() > 0: "Name should not be empty.";
-        List<String> pieces = new LinkedList<String>();
+        List<String> pieces = new LinkedList<>();
         int left = 0;
         int right = -1;
         int i = 0;
@@ -68,7 +71,7 @@ public class Name implements Comparable<Name> {
         return sb.toString();
     }
 
-    public int compareTo( Name o ) {
+    public int compareTo( @NotNull Name o ) {
         int n = Math.min( parts.length, o.parts.length );
         int i = 0;
         while (i < n) {

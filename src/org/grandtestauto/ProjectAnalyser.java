@@ -2,16 +2,19 @@ package org.grandtestauto;
 
 import org.grandtestauto.settings.SettingsSpecification;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Tim Lavers
  */
 public class ProjectAnalyser {
-    private List<String> unitTestPackages = new LinkedList<String>();
-    private List<String> functionTestPackages = new LinkedList<String>();
-    private List<String> loadTestPackages = new LinkedList<String>();
+    private List<String> unitTestPackages = new LinkedList<>();
+    private List<String> functionTestPackages = new LinkedList<>();
+    private List<String> loadTestPackages = new LinkedList<>();
 
     public ProjectAnalyser( SettingsSpecification settings ) throws IOException {
         PackageLister packageLister = new PackageLister();

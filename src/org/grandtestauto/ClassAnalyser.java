@@ -1,13 +1,5 @@
 /****************************************************************************
  *
- * Name: ClassAnalyser.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -369,7 +361,7 @@ public class ClassAnalyser {
                     break;
                 default:
                     //assert false : "Unexpected primitive flag: " + c;
-                    throw new IllegalArgumentException( "Unuexpected primitive flag: " + c );
+                    throw new IllegalArgumentException( "Unexpected primitive flag: " + c );
             }
             return result;
         }

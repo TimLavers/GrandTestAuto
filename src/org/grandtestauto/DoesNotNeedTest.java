@@ -1,13 +1,4 @@
 /****************************************************************************
- *
- * Name: CoverageUnitTester.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -19,7 +10,8 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import java.lang.annotation.*;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 /**
  * This annotation is for marking classes that do not need to be tested.

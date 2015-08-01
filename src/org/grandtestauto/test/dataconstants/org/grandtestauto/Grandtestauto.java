@@ -120,6 +120,5 @@ public static final String test96_zip = PATH + "test96.zip";
 public static final String test97_zip = PATH + "test97.zip";
 public static final String test98_zip = PATH + "test98.zip";
 public static final String test99_zip = PATH + "test99.zip";
-public static final String __old__test130_zip = PATH + "__old__test130.zip";
 
 }

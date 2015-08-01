@@ -1,13 +1,5 @@
 /****************************************************************************
  *
- * Name: PackageInfo.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -21,8 +13,8 @@ package org.grandtestauto;
 
 import java.io.File;
 import java.lang.reflect.Modifier;
-import java.util.TreeSet;
 import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * Finds the test classes in a test package.
@@ -32,7 +24,7 @@ import java.util.SortedSet;
 public class TestFinder extends ClassFinder {
 
     /** The names of the classes found in the package. */
-    SortedSet<String> relevantClassNames= new TreeSet<String>();
+    SortedSet<String> relevantClassNames= new TreeSet<>();
 
     /**
      * Creates a <code>ClassFinder</code> that searches the directory <code>classesDir</code> for test classes.

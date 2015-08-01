@@ -1,14 +1,16 @@
 package org.grandtestauto;
 
-import java.util.*;
-import java.text.*;
+import java.text.MessageFormat;
+import java.util.ResourceBundle;
 
 /**
  * Filters strings based on alphabetical comparison with an initial value and a final value;
  * this comparison is over-ridden if an exact value to match is defined.
+ *
+ * @author Tim Lavers
  */
 public class NameFilter {
-    public static enum Type {PACKAGE, CLASS, METHOD}
+    public enum Type {PACKAGE, CLASS, METHOD}
     public static final String SINGLE_SELECTION_META_KEY = "NF_SINGLE";
     public static final String INITIAL_SELECTION_META_KEY = "NF_INITIAL";
     public static final String FINAL_SELECTION_META_KEY = "NF_FINAL";

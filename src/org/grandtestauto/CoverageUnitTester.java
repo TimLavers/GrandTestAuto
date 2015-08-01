@@ -1,13 +1,4 @@
 /****************************************************************************
- *
- * Name: CoverageUnitTester.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
  *                          The Wide Open License (WOL)
  *
  * Permission to use, copy, modify, distribute and sell this software and its
@@ -23,7 +14,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 /**
  * A <code>CoverageUnitTester</code> runs the unit tests
@@ -106,11 +96,7 @@ public class CoverageUnitTester extends Coverage implements UnitTesterIF {
     @Override
     boolean doTestsForClass(Class testClass, @Nullable ClassAnalyser analyser) throws InvocationTargetException {
         NameFilter testMethodNameFilter = gta.settings().methodNameFilter();
-        TestRunner runner = new TestRunner(testClass, testMethodNameFilter, new TestRunner.MethodInvoker() {
-            public boolean invoke(Method method, Object testClassInstance) throws InvocationTargetException, IllegalAccessException {
-                return (Boolean) method.invoke(testClassInstance);
-            }
-        });
+        TestRunner runner = new TestRunner(testClass, testMethodNameFilter, (method, testClassInstance) -> (Boolean) method.invoke(testClassInstance));
         //The TestRunner runs the tests and the accountant ticks them off.
         return runner.runTestMethods(this, analyser);
     }
