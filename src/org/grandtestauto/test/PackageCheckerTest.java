@@ -21,14 +21,37 @@ package org.grandtestauto.test;
 
 import org.grandtestauto.Messages;
 import org.grandtestauto.PackageChecker;
+import org.grandtestauto.assertion.Assert;
+import org.grandtestauto.settings.ClassesRoot;
+import org.grandtestauto.settings.ProductionClassesRoot;
+import org.grandtestauto.settings.SinglePackage;
 import org.grandtestauto.test.dataconstants.org.grandtestauto.Grandtestauto;
 
 import java.io.File;
+import java.util.Properties;
 
 /**
  * @author Tim Lavers
  */
 public class PackageCheckerTest {
+
+    //Issue #4.
+    public boolean testClassesSeparateFromProductionClassesTest() throws Exception {
+        Helpers.cleanTempDirectory();
+        Helpers.expandZipTo(new File(Grandtestauto.test130_zip), Helpers.temp2Directory());
+        Properties properties = new Properties();
+        Helpers.addAsProperty(properties, ProductionClassesRoot.PROD_ROOT, Helpers.productionClassesRoot());
+        Helpers.addAsProperty(properties, ClassesRoot.CLASSES_ROOT, Helpers.testClassesRoot());
+        properties.setProperty(SinglePackage.SINGLE_PACKAGE, "a130.a");
+        File propertiesFile = Helpers.writeSettingsFile(properties);
+
+        String[] args = {propertiesFile.getAbsolutePath()};
+        Helpers.startRecordingSout();
+        PackageChecker.main(args);
+        String printedOut = Helpers.stopRecordingSout();
+        Assert.azzert(printedOut.contains(Messages.message(Messages.OPK_UNIT_TEST_COVERAGE_COMPLETE, "a130.a")), "Got: '" + printedOut + "'");
+        return true;
+    }
 
     public boolean mainTest() throws Exception {
         //See test spec Quick Coverage Report Positive
@@ -61,18 +84,6 @@ public class PackageCheckerTest {
         PackageChecker.main(args);
         String printedOut = Helpers.stopRecordingSout();
         assert printedOut.contains(Messages.message(Messages.OPK_UNIT_TEST_COVERAGE_COMPLETE, "a33"));
-        return true;
-    }
-
-    public boolean reportMissingUnitTesterTest() throws Exception {
-        //See test spec Quick Coverage Reports Missing UnitTester
-        //In package a45.a.b.test, there is no UnitTester class.
-        String settingsFileName = Helpers.expandZipAndWriteSettingsFile(new File(Grandtestauto.test45_zip), false, false, false, null, null, "a45.a.b", false, false, null, false, null, null, null, null, null, null);
-        Helpers.startRecordingSout();
-        String[] args = {settingsFileName};
-        PackageChecker.main(args);
-        String printedOut = Helpers.stopRecordingSout();
-        assert printedOut.contains(Messages.message(Messages.OPK_COULD_NOT_CREATE_UNIT_TESTER, "a45.a.b"));
         return true;
     }
 

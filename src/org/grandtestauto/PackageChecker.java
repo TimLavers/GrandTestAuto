@@ -42,9 +42,6 @@ public class PackageChecker extends Coverage implements UnitTesterIF {
     @NotNull
     PackageInfo pi;
 
-    /**
-     * For recording results.
-     */
     private
     @NotNull
     ResultsLogger resultsLogger;
@@ -53,8 +50,6 @@ public class PackageChecker extends Coverage implements UnitTesterIF {
     @NotNull
     String nameOfPackageToCheck;
 
-    /**
-     */
     public PackageChecker(@NotNull File classesRoot, @NotNull String packageName) {
         super(classesRoot);
         resultsLogger = new ResultsLogger(null, true);
@@ -111,13 +106,13 @@ public class PackageChecker extends Coverage implements UnitTesterIF {
     @Override
     public boolean runTests() {
         //First check that there is a UnitTester.
-        String utClassName = testPackageName()  + ".UnitTester";
-        try {
-            Class.forName(utClassName);
-        } catch (ClassNotFoundException e) {
-            resultsLogger.log(Messages.message(Messages.OPK_COULD_NOT_CREATE_UNIT_TESTER, nameOfPackageToCheck),null);
-            return false;
-        }
+//        String utClassName = testPackageName()  + ".UnitTester";
+//        try {
+//            Class.forName(utClassName);
+//        } catch (ClassNotFoundException e) {
+//            resultsLogger.log(Messages.message(Messages.OPK_COULD_NOT_CREATE_UNIT_TESTER, nameOfPackageToCheck),null);
+//            return false;
+//        }
         boolean result =  super.runTests();
         if (result) {
             resultsLogger.log(Messages.message( Messages.OPK_UNIT_TEST_COVERAGE_COMPLETE, nameOfPackageToCheck), null);

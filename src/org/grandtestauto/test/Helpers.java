@@ -392,6 +392,11 @@ public class Helpers {
     }
 
     public static GrandTestAuto setupForZipWithSeparateSourceAndTestClassRoots(File zip) throws Exception {
+        File propertiesFile = expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(zip);
+        return new GrandTestAuto(new SettingsSpecificationFromFile(propertiesFile.getAbsolutePath()));
+    }
+
+    public static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(File zip) {
         Properties properties = new Properties();
         addAsProperty(properties, ProductionClassesRoot.PROD_ROOT, productionClassesRoot());
         addAsProperty(properties, ClassesRoot.CLASSES_ROOT, testClassesRoot());
@@ -399,10 +404,10 @@ public class Helpers {
         properties.setProperty(ResultsFileName.LOG_FILE_NAME, defaultLogFile().getAbsolutePath());
         File propertiesFile = writeSettingsFile(properties);
         expandZipTo(zip, temp2Directory());
-        return new GrandTestAuto(new SettingsSpecificationFromFile(propertiesFile.getAbsolutePath()));
+        return propertiesFile;
     }
 
-    private static void addAsProperty(Properties properties, String key, File file) {
+    public  static void addAsProperty(Properties properties, String key, File file) {
         //For windows need to replace '\' in clsRoot by '/' else
         //the settings file won't be parsed properly.
         String property = file.getAbsolutePath().replace('\\', '/');
