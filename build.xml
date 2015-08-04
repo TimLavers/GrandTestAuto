@@ -116,7 +116,7 @@
     </target>
 
     <target name="deploy">
-        <jar jarfile="${dist}/gta-5.5.jar" basedir="${classes}">
+        <jar jarfile="${dist}/gta-5.6.jar" basedir="${classes}">
         </jar>
     </target>
 </project>
