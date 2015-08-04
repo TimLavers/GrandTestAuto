@@ -30,18 +30,17 @@ public class SettingsSpecificationFromFile extends SettingsSpecification {
     }
 
     public SettingsSpecificationFromFile(String settingsFileName) throws IOException {
-        Properties props = new Properties();
+        Properties properties = new Properties();
         InputStream is = new BufferedInputStream( new FileInputStream(new File( settingsFileName )) );
-        props.load(is);
+        properties.load(is);
 
-        settingsStream().forEach(s -> s.buildFrom(props));
-        settingsStream().forEach(s -> s.addTo(this));
+        loadFromProperties(properties);
         Set<String> legitimateKeys = new HashSet<>();
         settingsStream().forEach(s -> legitimateKeys.add(s.key()));
 
         //Make sure that there are no unknown keys in the properties file.
         //A mis-spelt key can waste a lot of time.
-        for (Object key : props.keySet()) {
+        for (Object key : properties.keySet()) {
             if (!legitimateKeys.contains( key.toString() )) {
                 unknownKeys.add( key.toString() );
             }

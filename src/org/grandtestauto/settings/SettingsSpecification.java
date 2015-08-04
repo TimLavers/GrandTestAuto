@@ -64,6 +64,7 @@ public abstract class SettingsSpecification {
     private NameFilter packageNameFilter = new NameFilter(NameFilter.Type.PACKAGE, null, null, null);
     private NameFilter classNameFilter = new NameFilter(NameFilter.Type.CLASS, null, null, null);
     private NameFilter methodNameFilter = new NameFilter(NameFilter.Type.METHOD, null, null, null);
+
     public SettingsSpecification() {
         settings.add(new ClassesRoot());
         settings.add(new ProductionClassesRoot());
@@ -100,6 +101,11 @@ public abstract class SettingsSpecification {
             addSubdirectoriesToDirectoryList(list, newName, subDir);
             list.add(newName);
         }
+    }
+
+    void loadFromProperties(Properties properties) {
+        settingsStream().forEach(s -> s.buildFrom(properties));
+        settingsStream().forEach(s -> s.addTo(this));
     }
 
     Stream<Setting> settingsStream() {

@@ -20,6 +20,7 @@
 package org.grandtestauto;
 
 import org.grandtestauto.settings.SettingsSpecification;
+import org.grandtestauto.settings.SettingsSpecificationFromCommandLine;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;
 
 import java.io.BufferedWriter;
@@ -38,6 +39,7 @@ import java.util.List;
 public class GrandTestAuto {
 
     private static final String VERSION = "GrandTestAuto 5.5";
+    public static final String DO_NOT_TERMINATE = "org.grandtestauto.DoNotTerminateAfterTests";
 
     /**
      * The runtime parameters.
@@ -66,52 +68,55 @@ public class GrandTestAuto {
     }
 
     /**
-     * Create and run a <code>GrandTestAuto</code> that will take its
-     * settings from the named file.
+     * Create and run a <code>GrandTestAuto</code> from the arguments, which must be
+     * either a single argument that names a file from which the settings are taken,
+     * or a series of key=value pairs overriding the default settings and those
+     * given in the System properties.
      *
-     * @param args a single string only, specifying the name of the settings file.
+     * @param args either single string, specifying the name of the settings file, or a series
+     *             of key value pairs overriding the default settings and those in the System properties.
      */
     public static void main(String[] args) {
         boolean gtaResult = false;
+        boolean hasRun = false;
+        boolean doNotTerminateAfterTests = Boolean.getBoolean(DO_NOT_TERMINATE);//Issue #3.
         if (args.length == 1) {
+            //Is it a file?
+            File f = new File(args[0]);
+            if (f.exists() && f.isFile()) {
+                try {
+                    SettingsSpecificationFromFile settings = new SettingsSpecificationFromFile(args[0]);
+                    if (!settings.unknownKeys().isEmpty()) {
+                        File correctedFile = correctedFileFor(f);
+                        writeCorrectedSettings(correctedFile, settings);
+                        p(Messages.message(Messages.OPK_SETTINGS_FILE_HAS_PROBLEMS, args[0]));
+                        p(Messages.message(Messages.OPK_CORRECTED_SETTINGS_FILE_WRITTEN, correctedFile.getAbsolutePath()));
+                        p(Messages.message(Messages.SK_GTA_CONTINUING_WITH_SETTINGS_THAT_COULD_BE_READ));
+                    }
+                    GrandTestAuto gta = new GrandTestAuto(settings);
+                    hasRun = true;
+                    gtaResult = gta.runAllTests();
+                } catch (Throwable e) {
+                    p(Messages.message(Messages.SK_GTA_COULD_NOT_RUN));
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (!hasRun) {
             try {
-                //Check that it's actually a file.
-                File f = new File(args[0]);
-                if (!f.exists()) {
-                    writeCorrectedSettings(f, new SettingsSpecificationFromFile());
-                    p(Messages.message(Messages.OPK_SETTINGS_FILE_NOT_FOUND_SO_WRITTEN, args[0]));
-                    return;
-                }
-                SettingsSpecificationFromFile settings = new SettingsSpecificationFromFile(args[0]);
-                if (!settings.unknownKeys().isEmpty()) {
-                    File correctedFile = correctedFileFor(f);
-                    writeCorrectedSettings(correctedFile, settings);
-                    p(Messages.message(Messages.OPK_SETTINGS_FILE_HAS_PROBLEMS, args[0]));
-                    p(Messages.message(Messages.OPK_CORRECTED_SETTINGS_FILE_WRITTEN, correctedFile.getAbsolutePath()));
-                    p(Messages.message(Messages.SK_GTA_CONTINUING_WITH_SETTINGS_THAT_COULD_BE_READ));
-                }
+                SettingsSpecificationFromCommandLine settings = new SettingsSpecificationFromCommandLine(args);
                 GrandTestAuto gta = new GrandTestAuto(settings);
                 gtaResult = gta.runAllTests();
             } catch (Throwable e) {
                 p(Messages.message(Messages.SK_GTA_COULD_NOT_RUN));
                 e.printStackTrace();
             }
-        } else if (args.length == 2) {
-            if (!args[0].equals("-run")) {
-                p(Messages.message(Messages.SK_GTA_NEEDS_TWO_ARGUMENTS));
-            }
-            try {
-                AutoLoadTestRun altr = new AutoLoadTestRun(args[1], args[1], null);
-                altr.runAutoLoadTest();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else {
-            p(Messages.message(Messages.SK_GTA_NEEDS_TWO_ARGUMENTS));
         }
         int status = gtaResult ? 0 : 1;
         p("GTA Exiting with status " + status + ".");
-        System.exit(status);
+        if (!doNotTerminateAfterTests) {
+            System.exit(status);
+        }
     }
 
     private static void writeCorrectedSettings(File correctedFile, SettingsSpecificationFromFile settings) throws IOException {

@@ -1,12 +1,15 @@
 package org.grandtestauto.test.functiontest;
 
+import org.grandtestauto.Messages;
 import org.grandtestauto.settings.ClassesRoot;
 import org.grandtestauto.settings.SettingsSpecificationFromFile;
-import org.grandtestauto.test.*;
-import org.grandtestauto.*;
+import org.grandtestauto.test.Helpers;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.Properties;
 
 /**
  * See the GrandTestAuto test specification.
@@ -29,14 +32,6 @@ public class SettingsReadFromFile extends FTBase {
         assert sout.contains( Messages.message( Messages.OPK_CORRECTED_SETTINGS_FILE_WRITTEN, correctedSettingsFile.getAbsolutePath() ));
         assert sout.contains( Messages.message( Messages.SK_GTA_CONTINUING_WITH_SETTINGS_THAT_COULD_BE_READ ) );
         SettingsSpecificationFromFile corrected = new SettingsSpecificationFromFile( correctedSettingsFile.getAbsolutePath() );
-        assert corrected.unknownKeys().isEmpty();
-
-        //Now when the file does not exist.
-        init();
-        File nonExistent =new File(Helpers.tempDirectory(), "TestSettings.txt." + System.currentTimeMillis() );
-        sout = Helpers.runGTAInSeparateJVM( nonExistent.getAbsolutePath() )[0];
-        assert sout.contains( Messages.message( Messages.OPK_SETTINGS_FILE_NOT_FOUND_SO_WRITTEN, nonExistent.getAbsolutePath() ));
-        corrected = new SettingsSpecificationFromFile( nonExistent.getAbsolutePath() );
         assert corrected.unknownKeys().isEmpty();
 
         return true;
