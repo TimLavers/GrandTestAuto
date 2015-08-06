@@ -22,6 +22,8 @@ package org.grandtestauto;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Runs a single <code>AutoLoadTest</code>.
  *
@@ -45,9 +47,14 @@ class AutoLoadTestRun {
     boolean runAutoLoadTest() throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         Class<?> klass = Class.forName(fullClassName);
         int repeats = 1;
-        Flaky annotation = klass.getAnnotation(Flaky.class);
-        if (annotation != null) {
-            repeats = annotation.repeat();
+        Flaky flaky = klass.getAnnotation(Flaky.class);
+        if (flaky != null) {
+            repeats = flaky.repeat();
+        }
+        Integer secondsToPauseIfTestThrowsException = null;
+        PauseOnException pauseOnException = klass.getAnnotation(PauseOnException.class);
+        if (pauseOnException != null) {
+            secondsToPauseIfTestThrowsException = pauseOnException.seconds();
         }
         AutoLoadTest ft = (AutoLoadTest) klass.newInstance();
         //Report the result.
@@ -56,32 +63,39 @@ class AutoLoadTestRun {
         long timeJustAfterTestRun = 0;
         for (int i=1; !resultForTest && i<=repeats; i++) {
             if (i > 1) {
-                log(Messages.message(Messages.TPK_RUNNING_TEST_AGAIN, testName, "" + i));
+                printAndLog(null, Messages.message(Messages.TPK_RUNNING_TEST_AGAIN, testName, "" + i));
             }
             timeJustBeforeTestRun = System.currentTimeMillis();
             try {
                 resultForTest = ft.runTest();
             } catch (Throwable e) {
                 String msg = Messages.message(Messages.OPK_ERROR_RUNNING_AUTO_LOAD_TEST, testName);
-                if (resultsLogger != null) {
-                    resultsLogger.log(msg, e);
-                } else {
-                    e.printStackTrace();
-                    System.out.println(msg);
+                printAndLog(e, msg);
+                if (secondsToPauseIfTestThrowsException != null) {
+                    String pauseMessage = Messages.message(Messages.OPK_PAUSING_TEST_THAT_THREW_ERROR, secondsToPauseIfTestThrowsException.toString());
+                    printAndLog(null, pauseMessage);
+                    try {
+                        Thread.sleep(TimeUnit.SECONDS.toMillis(secondsToPauseIfTestThrowsException));
+                    } catch (Exception e2) {
+                        e2.printStackTrace();
+                    }
                 }
             }
             timeJustAfterTestRun = System.currentTimeMillis();
         }
         long timeToRunTest = timeJustAfterTestRun - timeJustBeforeTestRun;
         String msg = testName + " " + Messages.passOrFail(resultForTest) + ", " + ResultsLogger.formatTestExecutionTime(timeToRunTest);
-        log(msg);
+        printAndLog(null, msg);
         return resultForTest;
     }
 
-    private void log(String msg) {
+    private void printAndLog(Throwable e, String msg) {
         if (resultsLogger != null) {
-            resultsLogger.log(msg, null);
+            resultsLogger.log(msg, e);
         } else {
+            if (e != null) {
+                e.printStackTrace();
+            }
             System.out.println(msg);
         }
     }

@@ -397,11 +397,22 @@ public class Helpers {
     }
 
     public static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(File zip) {
+        return expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(zip, true, true, true);
+    }
+
+    public static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFileForFunctionTestsOnly(File zip) {
+        return expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(zip, false, true, false);
+    }
+
+    private static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(File zip, boolean runUnitTests, boolean runFunctionTests, boolean runLoadTests) {
         Properties properties = new Properties();
         addAsProperty(properties, ProductionClassesRoot.PROD_ROOT, productionClassesRoot());
         addAsProperty(properties, ClassesRoot.CLASSES_ROOT, testClassesRoot());
         properties.setProperty(LogToFile.LOG_TO_FILE, "true");
         properties.setProperty(ResultsFileName.LOG_FILE_NAME, defaultLogFile().getAbsolutePath());
+        properties.setProperty(RunUnitTests.RUN_UNIT_TESTS, Boolean.toString(runUnitTests));
+        properties.setProperty(RunFunctionTests.RUN_FUNCTION_TESTS, Boolean.toString(runFunctionTests));
+        properties.setProperty(RunLoadTests.RUN_LOAD_TESTS, Boolean.toString(runLoadTests));
         File propertiesFile = writeSettingsFile(properties);
         expandZipTo(zip, temp2Directory());
         return propertiesFile;

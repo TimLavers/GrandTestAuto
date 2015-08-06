@@ -19,7 +19,9 @@
  *****************************************************************************/
 package org.grandtestauto;
 
-import java.text.*;
+import java.text.ChoiceFormat;
+import java.text.Format;
+import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 /**
@@ -87,6 +89,8 @@ public class Messages {
     public static final String OPK_RUNNING_LOAD_TEST_PACKAGE = "OPK_RUNNING_LOAD_TEST_PACKAGE";
     public static final String OPK_ERROR_RUNNING_AUTO_LOAD_TEST = "OPK_ERROR_RUNNING_AUTO_LOAD_TEST";
     public static final String OPK_ERROR_RUNNING_UNIT_TESTER_TEST = "OPK_ERROR_RUNNING_UNIT_TESTER_TEST";
+
+    public static final String OPK_PAUSING_TEST_THAT_THREW_ERROR = "OPK_PAUSING_TEST_THAT_THREW_ERROR";
 
     public static final String OPK_OVERALL_FUNCTION_TEST_RESULT = "OPK_OVERALL_FUNCTION_TEST_RESULT";
     public static final String OPK_OVERALL_LOAD_TEST_RESULT = "OPK_OVERALL_LOAD_TEST_RESULT";

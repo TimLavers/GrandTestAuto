@@ -15,12 +15,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * This annotation is for marking AutoLoadTest classes or unit test methods that are unreliable and should be re-run
- * up to some maximum number of times until they pass.
+ * If an AutoLoadTest class or unit test method that is marked with the annotation throws an exception,
+ * then the execution will pause for the specified number of seconds.
  *
  * @author Tim Lavers
  */
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Flaky {
-    int repeat();
+public @interface PauseOnException {
+    int seconds();
 }
