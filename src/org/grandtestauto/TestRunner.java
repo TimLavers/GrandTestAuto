@@ -1,21 +1,11 @@
 /****************************************************************************
- *
- * Name: TestRunner.java
- *
- * Synopsis: See javadoc class comments.
- *
- * Description: See javadoc class comments.
- *
- * Copyright 2002 Timothy Gordon Lavers (Australia)
- *
- *                          The Wide Open License (WOL)
- *
+ * The Wide Open License (WOL)
+ * <p>
  * Permission to use, copy, modify, distribute and sell this software and its
  * documentation for any purpose is hereby granted without fee, provided that
  * the above copyright notice and this license appear in all source copies.
  * THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT EXPRESS OR IMPLIED WARRANTY OF
  * ANY KIND. See http://www.dspguru.com/wol.htm for more information.
- *
  *****************************************************************************/
 package org.grandtestauto;
 
@@ -49,6 +39,8 @@ class TestRunner {
     SortedSet<Method> methodsToRun;
     private MethodInvoker invoker;
 
+    private @Nullable Integer pauseOnExceptionForClass;
+
     TestRunner(@NotNull Class<?> testClass, @Nullable NameFilter testMethodNameFilter, @NotNull MethodInvoker invoker) {
         this.testClass = testClass;
         this.invoker = invoker;
@@ -66,6 +58,7 @@ class TestRunner {
                 }
             }
         }
+        pauseOnExceptionForClass = StaticUtils.pauseOnException(testClass);
     }
 
     boolean runTestMethods(@NotNull Coverage cut, @Nullable ClassAnalyser analyser) {
@@ -92,9 +85,8 @@ class TestRunner {
                 continue;
             }
             //Run the test method. If it is annotated as Flaky, run multiple times.
-            int repeats = 1;
-            Flaky annotation = testMethod.getAnnotation(Flaky.class);
-            if (annotation != null) repeats = annotation.repeat();
+            int repeats = StaticUtils.flakyRepeats(testMethod);
+            Integer pauseOnException = StaticUtils.pauseOnException(testMethod);
             boolean resultForMethod = false;
             for (int i = 1; !resultForMethod && i <= repeats; i++) {
                 if (i > 1) {
@@ -117,6 +109,9 @@ class TestRunner {
                     ita.getCause().printStackTrace();
 //                    result = false;
                     reportTestResult(cut, testMethod, false, i, repeats);
+                    //If the class or the test method is annotated with PauseOnException, pause.
+                    StaticUtils.pauseOnException(pauseOnExceptionForClass, cut.resultsLogger());
+                    StaticUtils.pauseOnException(pauseOnException, cut.resultsLogger());
                     //If the class contains a method that is annotated as a cleanup method, call it.
                     for (Method m : testClass.getMethods()) {
                         Cleanup isCleanup = m.getAnnotation(Cleanup.class);

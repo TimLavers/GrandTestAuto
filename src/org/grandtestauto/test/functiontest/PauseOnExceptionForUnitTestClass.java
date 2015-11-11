@@ -15,11 +15,11 @@ import java.io.File;
  *
  * @author Tim Lavers
  */
-public class PauseOnExceptionForFunctionTest extends FTBase {
+public class PauseOnExceptionForUnitTestClass extends FTBase {
 
     public boolean runTest() throws Exception {
-        //Create a GrandTestAuto to run just the function test configured in tests131.zip.
-        File settingsFile = Helpers.expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFileForFunctionTestsOnly(new File(Grandtestauto.test131_zip));
+        //Create a GrandTestAuto to run just the unit test configured in tests131.zip.
+        File settingsFile = Helpers.expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFileForUnitTestsOnly(new File(Grandtestauto.test131_zip));
         GrandTestAuto gta = new GrandTestAuto(new SettingsSpecificationFromFile(settingsFile.getAbsolutePath()));
 
         //Record the times for the tests to run.
@@ -28,8 +28,8 @@ public class PauseOnExceptionForFunctionTest extends FTBase {
         Assert.azzertFalse(gta.runAllTests());//Sanity check.
         timer.stop();
 
-        //Confirm that just the function test ran.
-        Assert.azzert(testsRun.contains("a131.a.functiontest.TheFunctionTest"));
+        //Confirm that just the unit test ran.
+        Assert.azzert(testsRun.contains("a131.a.test.ATest"));
         Assert.aequals(1, testsRun.size());
 
         //Check that the time take was approximately 5 seconds.

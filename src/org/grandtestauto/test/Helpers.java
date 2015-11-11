@@ -404,6 +404,10 @@ public class Helpers {
         return expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(zip, false, true, false);
     }
 
+    public static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFileForUnitTestsOnly(File zip) {
+        return expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(zip, true, false, false);
+    }
+
     private static File expandZipWithSeparateSourceAndClassRootsAndWriteSettingsFile(File zip, boolean runUnitTests, boolean runFunctionTests, boolean runLoadTests) {
         Properties properties = new Properties();
         addAsProperty(properties, ProductionClassesRoot.PROD_ROOT, productionClassesRoot());
